@@ -2,7 +2,6 @@
 
 import React from 'react';
 import { Hero } from '@/components/sections/Hero';
-import { Categories } from '@/components/sections/Categories';
 import { NewArrivals } from '@/components/sections/NewArrivals';
 import { WhyChooseUs } from '@/components/sections/WhyChooseUs';
 import { Bestsellers } from '@/components/sections/Bestsellers';
@@ -16,7 +15,6 @@ export default function Home() {
   return (
     <div>
       <Hero />
-      <Categories />
       <NewArrivals />
       <WhyChooseUs />
       <Bestsellers />

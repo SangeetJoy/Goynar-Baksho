@@ -14,7 +14,8 @@ export const Footer: React.FC = () => {
           <div>
             <Link href="/" className="inline-block">
               <div className="text-2xl font-serif italic" style={{ color: COLORS.warmEspresso }}>
-                <span className="font-bold">Ela-Jewelmalestine</span>
+                <span className="font-bold">Your Fair Karn</span>
+                <p className="text-xs font-light not-italic mt-1">Fine Jewelry Collection</p>
               </div>
             </Link>
           </div>
@@ -36,10 +37,10 @@ export const Footer: React.FC = () => {
           {/* Copyright */}
           <div className="text-right">
             <p className="text-sm" style={{ color: COLORS.warmEspresso, opacity: 0.7 }}>
-              Newsleterator 1908 Copyright LV03
+              © {currentYear} Your Fair Karn
             </p>
             <p className="text-xs mt-1" style={{ color: COLORS.warmEspresso, opacity: 0.5 }}>
-              Of maestros Laori 1957 jamfiber
+              All Rights Reserved
             </p>
           </div>
         </div>

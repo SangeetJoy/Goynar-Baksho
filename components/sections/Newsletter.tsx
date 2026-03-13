@@ -26,7 +26,7 @@ export const Newsletter: React.FC = () => {
           <form onSubmit={handleSubmit} className="flex flex-col sm:flex-row gap-4 justify-center">
             <input
               type="email"
-              placeholder="Email Inntragram"
+              placeholder="Enter your email address"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               className="flex-1 max-w-md px-6 py-3 rounded-full text-base focus:outline-none focus:ring-2 focus:ring-opacity-50"

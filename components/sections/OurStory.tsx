@@ -17,10 +17,10 @@ export const OurStory: React.FC = () => {
             className="text-base leading-relaxed mb-8"
             style={{ color: COLORS.warmEspresso, opacity: 0.8 }}
           >
-            Who yet mean andint gotit collet of mainstream howk ovenelly to homeperifest behalf. 5 Kamus ako hidahout horeas . No comnou guit immeralise yod imbollientsary polinte illudronship herne jewellery persalt sparkles.
+            We believe that every woman deserves to feel special and elegant. Our passion for creating beautiful, affordable gold-plated jewelry has driven us to craft pieces that celebrate femininity and grace. Each design tells a story of timeless beauty and modern sophistication.
           </p>
           <Button variant="primary" size="md">
-            Add to Cart
+            Explore Collection
           </Button>
         </div>
       </div>

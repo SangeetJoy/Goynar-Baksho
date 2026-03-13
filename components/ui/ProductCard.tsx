@@ -16,8 +16,11 @@ export const ProductCard: React.FC<ProductCardProps> = ({
   showPrice = true,
 }) => {
   return (
-    <div className="group relative bg-white rounded-3xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-2">
-      <div className="aspect-square relative overflow-hidden">
+    <div 
+      className="group relative rounded-3xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-2"
+      style={{ backgroundColor: COLORS.dustyRose }}
+    >
+      <div className="aspect-square relative overflow-hidden bg-white">
         <Image
           src={product.image}
           alt={product.name}

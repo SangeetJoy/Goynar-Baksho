@@ -4,19 +4,19 @@ export const FEATURES: Feature[] = [
   {
     id: '1',
     title: 'Free Shipping',
-    description: 'I know one critique is that It works for all sets trust',
+    description: 'Enjoy complimentary shipping on all orders. We deliver beautiful jewelry right to your doorstep.',
     icon: 'clipboard',
   },
   {
     id: '2',
     title: 'Certified Quality',
-    description: 'A works predicts shall set exactly have says has heard gem',
+    description: 'Every piece is crafted with certified gold plating and undergoes rigorous quality checks.',
     icon: 'certificate',
   },
   {
     id: '3',
     title: 'Easy Returns',
-    description: 'I process each plhum samt pull tots, a parti to fast your all',
+    description: 'Not satisfied? Return any item within 30 days for a full refund. Your satisfaction is our priority.',
     icon: 'shield',
   },
 ];

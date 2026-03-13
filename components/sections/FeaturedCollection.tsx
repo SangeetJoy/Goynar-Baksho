@@ -14,19 +14,19 @@ export const FeaturedCollection: React.FC = () => {
         <div className="relative mb-12">
           <div className="relative w-full max-w-4xl mx-auto aspect-[16/9] rounded-[50%] overflow-hidden shadow-2xl">
             <Image
-              src="https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?w=1200&h=800&fit=crop"
-              alt="Gold ellicate Jewelry"
+              src="https://images.unsplash.com/photo-1611652022419-a9419f74343d?w=1200&h=800&fit=crop"
+              alt="Gold Plated Jewelry Collection"
               fill
               className="object-cover"
             />
             <div className="absolute inset-0 flex flex-col items-center justify-center text-center bg-black bg-opacity-30">
               <h2 className="text-white text-4xl lg:text-6xl font-serif mb-4 leading-tight px-4">
-                Gold ellicate!<br />
-                Jewelry! Juws lo<br />
-                Luxury.
+                Gold Plated<br />
+                Jewelry Collection<br />
+                Luxury Redefined
               </h2>
               <Button variant="primary" size="lg">
-                Show
+                Shop Now
               </Button>
             </div>
           </div>
@@ -45,7 +45,7 @@ export const FeaturedCollection: React.FC = () => {
           {featuredProducts.map((product) => (
             <div
               key={product.id}
-              className="relative aspect-square rounded-3xl overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-300"
+              className="relative aspect-square rounded-3xl overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-300 bg-white"
             >
               <Image
                 src={product.image}
