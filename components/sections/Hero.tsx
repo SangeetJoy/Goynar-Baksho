@@ -15,7 +15,7 @@ const styles = {
     "relative h-[26rem] w-[40rem] overflow-hidden rounded-[2.5rem] shadow-2xl",
   image: "object-cover",
   heroLeft: "relative flex justify-end overflow-visible",
-  categories: "absolute -bottom-8 left-1/2 -translate-x-8 flex gap-4 z-20",
+  categories: "absolute -bottom-10 left-[100%] -translate-x-8 flex gap-4 z-20",
   heroRight: "flex flex-col items-start gap-8 pl-16",
   heading: "font-serif text-[3.2rem] leading-tight uppercase tracking-wide",
 };
@@ -26,7 +26,7 @@ const HeroImage = () => (
     style={{ backgroundColor: COLORS.accentPrimary }}
   >
     <Image
-      src="https://images.unsplash.com/photo-1611652022419-a9419f74343d?w=600&h=800&fit=crop"
+      src="/images/hero/hero-image.png"
       alt="Elegant jewelry"
       fill
       className={styles.image}

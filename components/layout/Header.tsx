@@ -1,10 +1,10 @@
-'use client';
+"use client";
 
-import React, { useState } from 'react';
-import Link from 'next/link';
-import { NAV_ITEMS } from '@/lib/constants/navigation';
-import { COLORS } from '@/lib/constants/colors';
-import { useCart } from '@/lib/hooks/useCart';
+import React, { useState } from "react";
+import Link from "next/link";
+import { NAV_ITEMS } from "@/lib/constants/navigation";
+import { COLORS } from "@/lib/constants/colors";
+import { useCart } from "@/lib/hooks/useCart";
 
 export const Header: React.FC = () => {
   const { getCartCount } = useCart();
@@ -12,14 +12,28 @@ export const Header: React.FC = () => {
   const cartCount = getCartCount();
 
   return (
-    <header className="sticky top-0 z-50 shadow-lg" style={{ backgroundColor: COLORS.bgPrimary, borderBottom: `1px solid ${COLORS.bgSecondary}` }}>
+    <header
+      className="sticky top-0 z-50 shadow-lg"
+      style={{
+        backgroundColor: COLORS.bgPrimary,
+        borderBottom: `1px solid ${COLORS.bgSecondary}`,
+      }}
+    >
       <div className="container mx-auto px-4 py-4">
         <div className="flex items-center justify-between">
           {/* Logo */}
           <Link href="/" className="flex items-center">
-            <div className="text-2xl font-serif italic" style={{ color: COLORS.textBody }}>
-              <span className="font-bold">Your Fair Karn</span>
-              <p className="text-xs font-light not-italic" style={{ color: COLORS.textHeading }}>fine jewelry find a every</p>
+            <div
+              className="text-2xl font-serif italic"
+              style={{ color: COLORS.textBody }}
+            >
+              <span className="font-bold">Goynar Baksho</span>
+              <p
+                className="text-xs font-light not-italic"
+                style={{ color: COLORS.textHeading }}
+              >
+                You matter !
+              </p>
             </div>
           </Link>
 
@@ -137,7 +151,10 @@ export const Header: React.FC = () => {
 
         {/* Mobile Menu */}
         {mobileMenuOpen && (
-          <nav className="lg:hidden mt-4 pb-4 border-t pt-4" style={{ borderColor: COLORS.bgSecondary }}>
+          <nav
+            className="lg:hidden mt-4 pb-4 border-t pt-4"
+            style={{ borderColor: COLORS.bgSecondary }}
+          >
             {NAV_ITEMS.map((item) => (
               <Link
                 key={item.href}
