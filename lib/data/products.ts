@@ -9,7 +9,7 @@ export const PRODUCTS: Product[] = [
     category: "bracelet",
     featured: true,
     newArrival: true,
-    bestseller: false,
+    bestseller: true,
   },
   {
     id: "2",
@@ -48,7 +48,7 @@ export const PRODUCTS: Product[] = [
     image:
       "https://images.unsplash.com/photo-1635767798638-3e25273a8236?w=500&h=500&fit=crop",
     category: "necklace",
-    featured: true,
+    featured: false,
     newArrival: false,
     bestseller: false,
   },
@@ -59,7 +59,7 @@ export const PRODUCTS: Product[] = [
     image:
       "https://images.pexels.com/photos/1395306/pexels-photo-1395306.jpeg?w=500&h=500&fit=crop",
     category: "ring",
-    featured: true,
+    featured: false,
     newArrival: false,
     bestseller: false,
   },
@@ -116,6 +116,6 @@ export const PRODUCTS: Product[] = [
     category: "earring",
     featured: false,
     newArrival: false,
-    bestseller: true,
+    bestseller: false,
   },
 ];
