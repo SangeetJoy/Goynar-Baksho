@@ -22,7 +22,7 @@ export const CategoryCard: React.FC<CategoryCardProps> = ({
     >
       <h3
         className="text-xl font-semibold"
-        style={{ color: COLORS.textBody }}
+        style={{ color: COLORS.warmEspresso }}
       >
         {category.name}
       </h3>
