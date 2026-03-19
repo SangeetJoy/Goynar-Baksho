@@ -1,8 +1,8 @@
-import React from 'react';
-import Image from 'next/image';
-import { Product } from '@/lib/types';
-import { Button } from './Button';
-import { COLORS } from '@/lib/constants/colors';
+import React from "react";
+import Image from "next/image";
+import { Product } from "@/lib/types";
+import { Button } from "./Button";
+import { COLORS } from "@/lib/constants/colors";
 
 interface ProductCardProps {
   product: Product;
@@ -16,11 +16,14 @@ export const ProductCard: React.FC<ProductCardProps> = ({
   showPrice = true,
 }) => {
   return (
-    <div 
+    <div
       className="group relative rounded-3xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-2"
       style={{ backgroundColor: COLORS.productBackdrop }}
     >
-      <div className="aspect-square relative overflow-hidden" style={{ backgroundColor: COLORS.productBackdrop }}>
+      <div
+        className="aspect-square relative overflow-hidden"
+        style={{ backgroundColor: COLORS.productBackdrop }}
+      >
         <Image
           src={product.image}
           alt={product.name}
@@ -29,12 +32,18 @@ export const ProductCard: React.FC<ProductCardProps> = ({
         />
       </div>
       <div className="p-6 text-center">
-        <h3 className="text-lg font-semibold mb-2" style={{ color: COLORS.textBody }}>
+        <h3
+          className="text-lg font-semibold mb-2"
+          style={{ color: COLORS.textBody }}
+        >
           {product.name}
         </h3>
         {showPrice && (
-          <p className="text-2xl font-bold mb-4" style={{ color: COLORS.textHeading }}>
-            ${product.price.toFixed(2)}
+          <p
+            className="text-2xl font-bold mb-4"
+            style={{ color: COLORS.textHeading }}
+          >
+            {product.price.toFixed(2)}
           </p>
         )}
         {onAddToCart && (

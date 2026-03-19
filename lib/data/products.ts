@@ -4,7 +4,7 @@ export const PRODUCTS: Product[] = [
   {
     id: "1",
     name: "Gold Chain Bracelet",
-    price: 99.0,
+    price: 899.0,
     image: "/images/hero/jewellery-image-1.png",
     category: "bracelet",
     featured: true,
@@ -14,7 +14,7 @@ export const PRODUCTS: Product[] = [
   {
     id: "2",
     name: "Diamond Circle Ring",
-    price: 38.0,
+    price: 999.0,
     image: "/images/hero/jewellery-image-2.png",
     category: "ring",
     featured: true,
@@ -24,8 +24,8 @@ export const PRODUCTS: Product[] = [
   {
     id: "3",
     name: "Gold Drop Earrings",
-    price: 78.0,
-    image: "/images/hero/jewellery-image-1.png",
+    price: 799.0,
+    image: "/images/hero/jewellery-image-3.png",
     category: "earring",
     featured: true,
     newArrival: true,
@@ -35,7 +35,7 @@ export const PRODUCTS: Product[] = [
     id: "4",
     name: "Rose Gold Bracelet",
     price: 65.0,
-    image: "/images/hero/jewellery-image-2.png",
+    image: "/images/hero/jewellery-image-4.png",
     category: "bracelet",
     featured: true,
     newArrival: true,
@@ -45,12 +45,11 @@ export const PRODUCTS: Product[] = [
     id: "5",
     name: "Layered Gold Necklace",
     price: 120.0,
-    image:
-      "https://images.unsplash.com/photo-1635767798638-3e25273a8236?w=500&h=500&fit=crop",
+    image: "/images/hero/jewellery-image-5.png",
     category: "necklace",
     featured: false,
     newArrival: false,
-    bestseller: false,
+    bestseller: true,
   },
   {
     id: "6",
