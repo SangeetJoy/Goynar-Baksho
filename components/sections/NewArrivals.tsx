@@ -11,11 +11,11 @@ export const NewArrivals: React.FC = () => {
   const newArrivals = PRODUCTS.filter((p) => p.newArrival);
 
   return (
-    <section className="py-16" style={{ backgroundColor: COLORS.blush }}>
+    <section className="py-16" style={{ backgroundColor: COLORS.bgPrimary }}>
       <div className="container mx-auto px-4">
         <h2
           className="text-4xl lg:text-5xl font-serif mb-12 text-center lg:text-left"
-          style={{ color: COLORS.warmEspresso }}
+          style={{ color: COLORS.textHeading }}
         >
           New Arrivals
         </h2>

@@ -14,11 +14,15 @@ export const CategoryCard: React.FC<CategoryCardProps> = ({
   return (
     <button
       onClick={onClick}
-      className="bg-white rounded-2xl px-8 py-6 text-center shadow-[0_12px_30px_rgba(217,179,176,0.45)] hover:shadow-[0_16px_40px_rgba(217,179,176,0.55)] transition-all duration-300 hover:-translate-y-1 hover:scale-105 min-w-[180px]"
+      className="rounded-2xl px-8 py-6 text-center transition-all duration-300 hover:-translate-y-1 hover:scale-105 min-w-[180px] relative"
+      style={{
+        backgroundColor: COLORS.bgSecondary,
+        boxShadow: `0 8px 32px ${COLORS.accentGlow}`,
+      }}
     >
       <h3
         className="text-xl font-semibold"
-        style={{ color: COLORS.warmEspresso }}
+        style={{ color: COLORS.textBody }}
       >
         {category.name}
       </h3>

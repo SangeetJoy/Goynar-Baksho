@@ -9,8 +9,8 @@ interface TestimonialCardProps {
 
 export const TestimonialCard: React.FC<TestimonialCardProps> = ({ testimonial }) => {
   return (
-    <div className="bg-white rounded-3xl p-8 shadow-lg relative">
-      <div className="absolute top-6 left-6 text-6xl opacity-20" style={{ color: COLORS.dustyRose }}>
+    <div className="rounded-3xl p-8 shadow-lg relative" style={{ backgroundColor: COLORS.bgSecondary }}>
+      <div className="absolute top-6 left-6 text-6xl opacity-20" style={{ color: COLORS.accentPrimary }}>
         &ldquo;
       </div>
       <div className="flex items-center mb-4">
@@ -25,7 +25,7 @@ export const TestimonialCard: React.FC<TestimonialCardProps> = ({ testimonial })
           </div>
         )}
         <div>
-          <h4 className="font-semibold" style={{ color: COLORS.warmEspresso }}>
+          <h4 className="font-semibold" style={{ color: COLORS.textBody }}>
             {testimonial.name}
           </h4>
           <div className="flex gap-1 mt-1">
@@ -33,8 +33,8 @@ export const TestimonialCard: React.FC<TestimonialCardProps> = ({ testimonial })
               <svg
                 key={i}
                 className="w-4 h-4"
-                fill={i < testimonial.rating ? COLORS.dustyRose : 'none'}
-                stroke={COLORS.dustyRose}
+                fill={i < testimonial.rating ? COLORS.accentPrimary : 'none'}
+                stroke={COLORS.accentPrimary}
                 viewBox="0 0 24 24"
               >
                 <path
@@ -48,10 +48,10 @@ export const TestimonialCard: React.FC<TestimonialCardProps> = ({ testimonial })
           </div>
         </div>
       </div>
-      <p className="text-sm leading-relaxed" style={{ color: COLORS.warmEspresso, opacity: 0.8 }}>
+      <p className="text-sm leading-relaxed" style={{ color: COLORS.textBody, opacity: 0.8 }}>
         {testimonial.text}
       </p>
-      <div className="absolute bottom-6 right-6 text-6xl opacity-20" style={{ color: COLORS.dustyRose }}>
+      <div className="absolute bottom-6 right-6 text-6xl opacity-20" style={{ color: COLORS.accentPrimary }}>
         &rdquo;
       </div>
     </div>

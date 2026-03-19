@@ -14,12 +14,12 @@ export const Newsletter: React.FC = () => {
   };
 
   return (
-    <section className="py-16" style={{ backgroundColor: COLORS.dustyRose }}>
+    <section className="py-16" style={{ backgroundColor: COLORS.bgPrimary }}>
       <div className="container mx-auto px-4">
         <div className="max-w-2xl mx-auto text-center">
           <h2
             className="text-4xl lg:text-5xl font-serif mb-8"
-            style={{ color: COLORS.warmEspresso }}
+            style={{ color: COLORS.textHeading }}
           >
             Stay in Touch
           </h2>
@@ -31,8 +31,9 @@ export const Newsletter: React.FC = () => {
               onChange={(e) => setEmail(e.target.value)}
               className="flex-1 max-w-md px-6 py-3 rounded-full text-base focus:outline-none focus:ring-2 focus:ring-opacity-50"
               style={{
-                color: COLORS.warmEspresso,
-                backgroundColor: 'white',
+                color: COLORS.textBody,
+                backgroundColor: COLORS.bgSecondary,
+                borderColor: COLORS.accentPrimary,
               }}
               required
             />

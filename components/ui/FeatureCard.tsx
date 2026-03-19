@@ -29,16 +29,16 @@ export const FeatureCard: React.FC<FeatureCardProps> = ({ feature }) => {
     <div className="text-center">
       <div
         className="w-20 h-20 rounded-full mx-auto mb-4 flex items-center justify-center"
-        style={{ backgroundColor: COLORS.dustyRose }}
+        style={{ backgroundColor: COLORS.accentPrimary }}
       >
-        <div style={{ color: COLORS.warmEspresso }}>
+        <div style={{ color: COLORS.textBody }}>
           {IconMap[feature.icon] || IconMap.clipboard}
         </div>
       </div>
-      <h3 className="text-xl font-semibold mb-2" style={{ color: COLORS.warmEspresso }}>
+      <h3 className="text-xl font-semibold mb-2" style={{ color: COLORS.textHeading }}>
         {feature.title}
       </h3>
-      <p className="text-sm" style={{ color: COLORS.warmEspresso, opacity: 0.7 }}>
+      <p className="text-sm" style={{ color: COLORS.textBody, opacity: 0.7 }}>
         {feature.description}
       </p>
     </div>

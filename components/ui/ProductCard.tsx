@@ -17,10 +17,10 @@ export const ProductCard: React.FC<ProductCardProps> = ({
 }) => {
   return (
     <div 
-      className="group relative rounded-3xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-2"
-      style={{ backgroundColor: COLORS.dustyRose }}
+      className="group relative rounded-3xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-2"
+      style={{ backgroundColor: COLORS.productBackdrop }}
     >
-      <div className="aspect-square relative overflow-hidden bg-white">
+      <div className="aspect-square relative overflow-hidden" style={{ backgroundColor: COLORS.productBackdrop }}>
         <Image
           src={product.image}
           alt={product.name}
@@ -29,11 +29,11 @@ export const ProductCard: React.FC<ProductCardProps> = ({
         />
       </div>
       <div className="p-6 text-center">
-        <h3 className="text-lg font-semibold mb-2" style={{ color: COLORS.warmEspresso }}>
+        <h3 className="text-lg font-semibold mb-2" style={{ color: COLORS.textBody }}>
           {product.name}
         </h3>
         {showPrice && (
-          <p className="text-2xl font-bold mb-4" style={{ color: COLORS.warmEspresso }}>
+          <p className="text-2xl font-bold mb-4" style={{ color: COLORS.textHeading }}>
             ${product.price.toFixed(2)}
           </p>
         )}

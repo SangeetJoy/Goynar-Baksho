@@ -8,7 +8,7 @@ export const FeaturedCollection: React.FC = () => {
   const featuredProducts = PRODUCTS.filter((p) => p.featured).slice(0, 6);
 
   return (
-    <section className="py-16" style={{ backgroundColor: COLORS.blush }}>
+    <section className="py-16" style={{ backgroundColor: COLORS.bgSecondary }}>
       <div className="container mx-auto px-4">
         {/* Hero Oval Image */}
         <div className="relative mb-12">
@@ -19,8 +19,8 @@ export const FeaturedCollection: React.FC = () => {
               fill
               className="object-cover"
             />
-            <div className="absolute inset-0 flex flex-col items-center justify-center text-center bg-black bg-opacity-30">
-              <h2 className="text-white text-4xl lg:text-6xl font-serif mb-4 leading-tight px-4">
+            <div className="absolute inset-0 flex flex-col items-center justify-center text-center" style={{ backgroundColor: 'rgba(0,0,0,0.4)' }}>
+              <h2 className="text-white text-4xl lg:text-6xl font-serif mb-4 leading-tight px-4" style={{ color: COLORS.textHeading }}>
                 Gold Plated<br />
                 Jewelry Collection<br />
                 Luxury Redefined
@@ -35,7 +35,7 @@ export const FeaturedCollection: React.FC = () => {
         {/* Featured Collection Title */}
         <h3
           className="text-4xl lg:text-5xl font-serif mb-12 text-center"
-          style={{ color: COLORS.warmEspresso }}
+          style={{ color: COLORS.textHeading }}
         >
           Featured Collection
         </h3>
@@ -45,7 +45,8 @@ export const FeaturedCollection: React.FC = () => {
           {featuredProducts.map((product) => (
             <div
               key={product.id}
-              className="relative aspect-square rounded-3xl overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-300 bg-white"
+              className="relative aspect-square rounded-3xl overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-300"
+              style={{ backgroundColor: COLORS.productBackdrop }}
             >
               <Image
                 src={product.image}

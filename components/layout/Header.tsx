@@ -12,14 +12,14 @@ export const Header: React.FC = () => {
   const cartCount = getCartCount();
 
   return (
-    <header className="sticky top-0 z-50 bg-white shadow-sm">
+    <header className="sticky top-0 z-50 shadow-lg" style={{ backgroundColor: COLORS.bgPrimary, borderBottom: `1px solid ${COLORS.bgSecondary}` }}>
       <div className="container mx-auto px-4 py-4">
         <div className="flex items-center justify-between">
           {/* Logo */}
           <Link href="/" className="flex items-center">
-            <div className="text-2xl font-serif italic" style={{ color: COLORS.warmEspresso }}>
+            <div className="text-2xl font-serif italic" style={{ color: COLORS.textBody }}>
               <span className="font-bold">Your Fair Karn</span>
-              <p className="text-xs font-light not-italic">fine jewelry find a every</p>
+              <p className="text-xs font-light not-italic" style={{ color: COLORS.textHeading }}>fine jewelry find a every</p>
             </div>
           </Link>
 
@@ -30,7 +30,7 @@ export const Header: React.FC = () => {
                 key={item.href}
                 href={item.href}
                 className="text-sm font-medium hover:opacity-70 transition-opacity"
-                style={{ color: COLORS.warmEspresso }}
+                style={{ color: COLORS.textBody }}
               >
                 {item.label}
               </Link>
@@ -41,7 +41,8 @@ export const Header: React.FC = () => {
           <div className="flex items-center gap-4">
             {/* Search Icon */}
             <button
-              className="p-2 hover:bg-gray-100 rounded-full transition-colors"
+              className="p-2 rounded-full transition-colors"
+              style={{ hover: { backgroundColor: COLORS.bgSecondary } }}
               aria-label="Search"
             >
               <svg
@@ -49,7 +50,7 @@ export const Header: React.FC = () => {
                 fill="none"
                 viewBox="0 0 24 24"
                 strokeWidth={1.5}
-                stroke={COLORS.warmEspresso}
+                stroke={COLORS.textBody}
                 className="w-6 h-6"
               >
                 <path
@@ -62,7 +63,7 @@ export const Header: React.FC = () => {
 
             {/* User Icon */}
             <button
-              className="p-2 hover:bg-gray-100 rounded-full transition-colors"
+              className="p-2 rounded-full transition-colors"
               aria-label="User Account"
             >
               <svg
@@ -70,7 +71,7 @@ export const Header: React.FC = () => {
                 fill="none"
                 viewBox="0 0 24 24"
                 strokeWidth={1.5}
-                stroke={COLORS.warmEspresso}
+                stroke={COLORS.textBody}
                 className="w-6 h-6"
               >
                 <path
@@ -83,7 +84,7 @@ export const Header: React.FC = () => {
 
             {/* Cart Icon */}
             <button
-              className="p-2 hover:bg-gray-100 rounded-full transition-colors relative"
+              className="p-2 rounded-full transition-colors relative"
               aria-label="Shopping Cart"
             >
               <svg
@@ -91,7 +92,7 @@ export const Header: React.FC = () => {
                 fill="none"
                 viewBox="0 0 24 24"
                 strokeWidth={1.5}
-                stroke={COLORS.warmEspresso}
+                stroke={COLORS.textBody}
                 className="w-6 h-6"
               >
                 <path
@@ -103,7 +104,7 @@ export const Header: React.FC = () => {
               {cartCount > 0 && (
                 <span
                   className="absolute -top-1 -right-1 w-5 h-5 rounded-full text-white text-xs flex items-center justify-center font-bold"
-                  style={{ backgroundColor: COLORS.dustyRose }}
+                  style={{ backgroundColor: COLORS.accentPrimary }}
                 >
                   {cartCount}
                 </span>
@@ -112,7 +113,7 @@ export const Header: React.FC = () => {
 
             {/* Mobile Menu Button */}
             <button
-              className="lg:hidden p-2 hover:bg-gray-100 rounded-full transition-colors"
+              className="lg:hidden p-2 rounded-full transition-colors"
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
               aria-label="Toggle Menu"
             >
@@ -121,7 +122,7 @@ export const Header: React.FC = () => {
                 fill="none"
                 viewBox="0 0 24 24"
                 strokeWidth={1.5}
-                stroke={COLORS.warmEspresso}
+                stroke={COLORS.textBody}
                 className="w-6 h-6"
               >
                 <path
@@ -136,13 +137,13 @@ export const Header: React.FC = () => {
 
         {/* Mobile Menu */}
         {mobileMenuOpen && (
-          <nav className="lg:hidden mt-4 pb-4 border-t pt-4">
+          <nav className="lg:hidden mt-4 pb-4 border-t pt-4" style={{ borderColor: COLORS.bgSecondary }}>
             {NAV_ITEMS.map((item) => (
               <Link
                 key={item.href}
                 href={item.href}
                 className="block py-2 text-sm font-medium hover:opacity-70 transition-opacity"
-                style={{ color: COLORS.warmEspresso }}
+                style={{ color: COLORS.textBody }}
                 onClick={() => setMobileMenuOpen(false)}
               >
                 {item.label}
