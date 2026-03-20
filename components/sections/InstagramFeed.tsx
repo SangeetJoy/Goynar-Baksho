@@ -1,7 +1,7 @@
-import React from 'react';
-import Image from 'next/image';
-import { INSTAGRAM_POSTS } from '@/lib/data/instagram';
-import { COLORS } from '@/lib/constants/colors';
+import React from "react";
+import Image from "next/image";
+import { INSTAGRAM_POSTS } from "@/lib/data/instagram";
+import { COLORS } from "@/lib/constants/colors";
 
 export const InstagramFeed: React.FC = () => {
   return (
@@ -16,13 +16,19 @@ export const InstagramFeed: React.FC = () => {
             >
               Follow Us
             </h2>
-            <p className="text-xl mb-6" style={{ color: COLORS.textBody, opacity: 0.7 }}>
-              @yourfairkarn
+            <p
+              className="text-xl mb-6"
+              style={{ color: COLORS.textBody, opacity: 0.7 }}
+            >
+              @GoynarBaksho
             </p>
-            <div className="relative w-32 h-32 rounded-full overflow-hidden border-4 shadow-lg" style={{ borderColor: COLORS.accentPrimary }}>
+            <div
+              className="relative w-32 h-32 rounded-full overflow-hidden border-4 shadow-lg"
+              style={{ borderColor: COLORS.accentPrimary }}
+            >
               <Image
                 src="https://images.unsplash.com/photo-1611652022419-a9419f74343d?w=200&h=200&fit=crop"
-                alt="Your Fair Karn on Instagram"
+                alt="Goynar Baksho on Instagram"
                 fill
                 className="object-cover"
               />

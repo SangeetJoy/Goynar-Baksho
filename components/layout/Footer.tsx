@@ -54,7 +54,7 @@ export const Footer: React.FC = () => {
               className="text-sm"
               style={{ color: COLORS.textBody, opacity: 0.7 }}
             >
-              © {currentYear} Your Fair Karn
+              © {currentYear} Goynar Baksho
             </p>
             <p
               className="text-xs mt-1"
