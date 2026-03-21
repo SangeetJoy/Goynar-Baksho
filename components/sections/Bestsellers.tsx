@@ -5,11 +5,11 @@ import Image from "next/image";
 import { ProductCard } from "../ui/ProductCard";
 import { Button } from "../ui/Button";
 import { PRODUCTS } from "@/lib/data/products";
-import { useCart } from "@/lib/hooks/useCart";
 import { COLORS } from "@/lib/constants/colors";
+import { useCartContext } from "@/providers/CartProvider";
 
 export const Bestsellers: React.FC = () => {
-  const { addToCart } = useCart();
+  const { addToCart } = useCartContext();
   const bestsellers = PRODUCTS.filter((p) => p.bestseller).slice(0, 3);
 
   return (

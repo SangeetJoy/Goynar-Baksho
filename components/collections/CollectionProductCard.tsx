@@ -99,7 +99,7 @@ const ProductInfo: React.FC<{
         onClick={() => onAddToCart(product)}
         className="w-full"
       >
-        Add to Cart
+        {product.isAddedToCart ? "Added to Cart" : "Add to Cart"}
       </Button>
     </div>
   </div>

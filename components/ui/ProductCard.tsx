@@ -53,7 +53,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({
             onClick={() => onAddToCart(product)}
             className="w-full"
           >
-            Add to Cart
+            {product.isAddedToCart ? "Added to Cart" : "Add to Cart"}
           </Button>
         )}
       </div>

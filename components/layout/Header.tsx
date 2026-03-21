@@ -4,10 +4,10 @@ import React, { useState } from "react";
 import Link from "next/link";
 import { NAV_ITEMS } from "@/lib/constants/navigation";
 import { COLORS } from "@/lib/constants/colors";
-import { useCart } from "@/lib/hooks/useCart";
+import { useCartContext } from "@/providers/CartProvider";
 
 export const Header: React.FC = () => {
-  const { getCartCount } = useCart();
+  const { getCartCount } = useCartContext();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const cartCount = getCartCount();
 
@@ -97,8 +97,9 @@ export const Header: React.FC = () => {
             </button>
 
             {/* Cart Icon */}
-            <button
-              className="p-2 rounded-full transition-colors relative"
+            <Link
+              href="/cart"
+              className="p-2 rounded-full transition-all duration-300 hover:scale-110 relative"
               aria-label="Shopping Cart"
             >
               <svg
@@ -117,13 +118,13 @@ export const Header: React.FC = () => {
               </svg>
               {cartCount > 0 && (
                 <span
-                  className="absolute -top-1 -right-1 w-5 h-5 rounded-full text-white text-xs flex items-center justify-center font-bold"
+                  className="absolute -top-1 -right-1 w-5 h-5 rounded-full text-white text-xs flex items-center justify-center font-bold animate-bounce"
                   style={{ backgroundColor: COLORS.accentPrimary }}
                 >
                   {cartCount}
                 </span>
               )}
-            </button>
+            </Link>
 
             {/* Mobile Menu Button */}
             <button
