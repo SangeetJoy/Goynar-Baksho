@@ -17,7 +17,7 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "Your Fair Karn - Fine Jewelry",
+  title: "Goynar Baksho",
   description: "Discover exquisite gold-plated jewelry. Elegance redefined.",
 };
 
