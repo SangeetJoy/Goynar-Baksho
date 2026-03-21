@@ -1,22 +1,23 @@
-import React from 'react';
-import { COLORS } from '@/lib/constants/colors';
+import React from "react";
+import { COLORS } from "@/lib/constants/colors";
+import { Button } from "../ui";
 
 type CategoryOption = {
-  value: 'all' | 'necklace' | 'bracelet' | 'ring' | 'earring';
+  value: "all" | "necklace" | "bracelet" | "ring" | "earring";
   label: string;
 };
 
 const CATEGORIES: CategoryOption[] = [
-  { value: 'all', label: 'All Products' },
-  { value: 'necklace', label: 'Necklaces' },
-  { value: 'earring', label: 'Earrings' },
-  { value: 'bracelet', label: 'Bracelets' },
-  { value: 'ring', label: 'Rings' },
+  { value: "all", label: "All Products" },
+  { value: "necklace", label: "Necklaces" },
+  { value: "earring", label: "Earrings" },
+  { value: "bracelet", label: "Bracelets" },
+  { value: "ring", label: "Rings" },
 ];
 
 interface CategoryFilterProps {
-  selectedCategory: CategoryOption['value'];
-  onCategoryChange: (category: CategoryOption['value']) => void;
+  selectedCategory: CategoryOption["value"];
+  onCategoryChange: (category: CategoryOption["value"]) => void;
 }
 
 export const CategoryFilter: React.FC<CategoryFilterProps> = ({
@@ -31,7 +32,7 @@ export const CategoryFilter: React.FC<CategoryFilterProps> = ({
       >
         Filter by Category
       </h2>
-      
+
       {/* Desktop Filter - Horizontal */}
       <div className="hidden md:flex flex-wrap gap-4">
         {CATEGORIES.map((category) => (
@@ -48,7 +49,9 @@ export const CategoryFilter: React.FC<CategoryFilterProps> = ({
       <div className="md:hidden">
         <select
           value={selectedCategory}
-          onChange={(e) => onCategoryChange(e.target.value as CategoryOption['value'])}
+          onChange={(e) =>
+            onCategoryChange(e.target.value as CategoryOption["value"])
+          }
           className="w-full px-4 py-3 rounded-lg border-none focus:outline-none focus:ring-2 focus:ring-opacity-50"
           style={{
             backgroundColor: COLORS.bgSecondary,
@@ -86,7 +89,7 @@ const CategoryButton: React.FC<CategoryButtonProps> = ({
       style={{
         backgroundColor: isSelected ? COLORS.accentPrimary : COLORS.bgSecondary,
         color: COLORS.textBody,
-        border: isSelected ? 'none' : `1px solid ${COLORS.accentPrimary}`,
+        border: isSelected ? "none" : `1px solid ${COLORS.accentPrimary}`,
       }}
     >
       {category.label}
