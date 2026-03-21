@@ -1,13 +1,13 @@
-'use client';
+"use client";
 
-import React from 'react';
-import { ProductCard } from '../ui/ProductCard';
-import { PRODUCTS } from '@/lib/data/products';
-import { useCart } from '@/lib/hooks/useCart';
-import { COLORS } from '@/lib/constants/colors';
+import React from "react";
+import { ProductCard } from "../ui/ProductCard";
+import { PRODUCTS } from "@/lib/data/products";
+import { useCartContext } from "@/providers/CartProvider";
+import { COLORS } from "@/lib/constants/colors";
 
 export const NewArrivals: React.FC = () => {
-  const { addToCart } = useCart();
+  const { addToCart } = useCartContext();
   const newArrivals = PRODUCTS.filter((p) => p.newArrival);
 
   return (

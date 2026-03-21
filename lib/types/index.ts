@@ -3,11 +3,12 @@ export interface Product {
   name: string;
   price: number;
   image: string;
-  category: 'necklace' | 'earring' | 'bracelet' | 'ring';
+  category: "necklace" | "earring" | "bracelet" | "ring";
   description?: string;
   featured?: boolean;
   bestseller?: boolean;
   newArrival?: boolean;
+  isAddedToCart?: boolean;
 }
 
 export interface Category {

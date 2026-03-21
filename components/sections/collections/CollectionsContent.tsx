@@ -1,21 +1,24 @@
-'use client';
+"use client";
 
-import React, { useState, useMemo } from 'react';
-import { PRODUCTS } from '@/lib/data/products';
-import { CategoryFilter } from '@/components/collections/CategoryFilter';
-import { ProductGrid } from '@/components/collections/ProductGrid';
-import { useCart } from '@/lib/hooks/useCart';
-import { Product } from '@/lib/types';
+import React, { useState, useMemo } from "react";
+import { PRODUCTS } from "@/lib/data/products";
+import { CategoryFilter } from "@/components/collections/CategoryFilter";
+import { ProductGrid } from "@/components/collections/ProductGrid";
+import { useCartContext } from "@/providers/CartProvider";
+import { Product } from "@/lib/types";
 
-type CategoryFilter = 'all' | 'necklace' | 'bracelet' | 'ring' | 'earring';
+type CategoryFilter = "all" | "necklace" | "bracelet" | "ring" | "earring";
 
 export const CollectionsContent: React.FC = () => {
-  const [selectedCategory, setSelectedCategory] = useState<CategoryFilter>('all');
-  const { addToCart } = useCart();
+  const [selectedCategory, setSelectedCategory] =
+    useState<CategoryFilter>("all");
+  const { addToCart, cartItems } = useCartContext();
+
+  console.log({ cartItems });
 
   // Filter products based on selected category
   const filteredProducts = useMemo(() => {
-    if (selectedCategory === 'all') {
+    if (selectedCategory === "all") {
       return PRODUCTS;
     }
     return PRODUCTS.filter((product) => product.category === selectedCategory);
@@ -28,7 +31,10 @@ export const CollectionsContent: React.FC = () => {
 
   // Handle add to cart
   const handleAddToCart = (product: Product) => {
-    addToCart(product);
+    if (!product.isAddedToCart) {
+      product.isAddedToCart = true; // Add the `isAdded` property to the product object
+      addToCart(product);
+    }
     // You can add a toast notification here later
     console.log(`Added ${product.name} to cart`);
   };
@@ -44,11 +50,9 @@ export const CollectionsContent: React.FC = () => {
 
         {/* Product Count */}
         <div className="mb-8">
-          <p
-            className="text-sm"
-            style={{ color: 'rgba(255, 255, 255, 0.7)' }}
-          >
-            Showing {filteredProducts.length} product{filteredProducts.length !== 1 ? 's' : ''}
+          <p className="text-sm" style={{ color: "rgba(255, 255, 255, 0.7)" }}>
+            Showing {filteredProducts.length} product
+            {filteredProducts.length !== 1 ? "s" : ""}
           </p>
         </div>
 
