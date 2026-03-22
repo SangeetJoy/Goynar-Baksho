@@ -1,14 +1,13 @@
-import React from 'react';
-import Image from 'next/image';
-import { Button } from '../ui/Button';
-import { COLORS } from '@/lib/constants/colors';
-import { PRODUCTS } from '@/lib/data/products';
+import React from "react";
+import Image from "next/image";
+import { Button } from "../ui/Button";
+import { PRODUCTS } from "@/lib/data/products";
 
 export const FeaturedCollection: React.FC = () => {
   const featuredProducts = PRODUCTS.filter((p) => p.featured).slice(0, 6);
 
   return (
-    <section className="py-16" style={{ backgroundColor: COLORS.bgSecondary }}>
+    <section className="py-16 bg-brand-card">
       <div className="container mx-auto px-4">
         {/* Hero Oval Image */}
         <div className="relative mb-12">
@@ -19,10 +18,12 @@ export const FeaturedCollection: React.FC = () => {
               fill
               className="object-cover"
             />
-            <div className="absolute inset-0 flex flex-col items-center justify-center text-center" style={{ backgroundColor: 'rgba(0,0,0,0.4)' }}>
-              <h2 className="text-white text-4xl lg:text-6xl font-serif mb-4 leading-tight px-4" style={{ color: COLORS.textHeading }}>
-                Gold Plated<br />
-                Jewelry Collection<br />
+            <div className="absolute inset-0 flex flex-col items-center justify-center text-center bg-black/40">
+              <h2 className="text-brand-heading text-4xl lg:text-6xl font-serif mb-4 leading-tight px-4">
+                Gold Plated
+                <br />
+                Jewelry Collection
+                <br />
                 Luxury Redefined
               </h2>
               <Button variant="primary" size="lg">
@@ -32,21 +33,15 @@ export const FeaturedCollection: React.FC = () => {
           </div>
         </div>
 
-        {/* Featured Collection Title */}
-        <h3
-          className="text-4xl lg:text-5xl font-serif mb-12 text-center"
-          style={{ color: COLORS.textHeading }}
-        >
+        <h3 className="text-4xl lg:text-5xl font-serif mb-12 text-center text-brand-heading">
           Featured Collection
         </h3>
 
-        {/* Product Grid */}
         <div className="grid grid-cols-2 md:grid-cols-3 gap-6">
           {featuredProducts.map((product) => (
             <div
               key={product.id}
-              className="relative aspect-square rounded-3xl overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-300"
-              style={{ backgroundColor: COLORS.productBackdrop }}
+              className="relative aspect-square rounded-3xl overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-300 bg-[#5C3D41]"
             >
               <Image
                 src={product.image}

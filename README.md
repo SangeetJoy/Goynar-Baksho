@@ -5,11 +5,13 @@ A beautiful, modern e-commerce website for gold-plated jewelry built with Next.j
 ## 🎨 Design Features
 
 - **Color Scheme:**
+
   - Blush: `#FFFDFD` (Background)
   - Warm Espresso: `#3E3636` (Text)
   - Dusty Rose: `#D9B3B0` (Accent)
 
 - **Typography:**
+
   - Playfair Display (Serif) - For headings
   - Inter (Sans-serif) - For body text
 
@@ -90,6 +92,7 @@ A beautiful, modern e-commerce website for gold-plated jewelry built with Next.j
 ## 🎯 Key Features
 
 ### Homepage Sections
+
 1. **Hero Section** - Eye-catching hero with model image and CTA
 2. **Categories** - Quick navigation to Necklaces, Earrings, Bracelets
 3. **New Arrivals** - Display latest products
@@ -102,6 +105,7 @@ A beautiful, modern e-commerce website for gold-plated jewelry built with Next.j
 10. **Newsletter** - Email subscription
 
 ### Components
+
 - **Responsive Header** - Sticky navigation with search, user, cart icons
 - **Product Cards** - Hover effects, image zoom, Add to Cart
 - **Category Cards** - Interactive navigation buttons
@@ -110,6 +114,7 @@ A beautiful, modern e-commerce website for gold-plated jewelry built with Next.j
 - **Footer** - Brand info, navigation, copyright
 
 ### Shopping Cart (useCart Hook)
+
 - Add to cart functionality
 - Update quantities
 - Remove items
@@ -128,13 +133,14 @@ A beautiful, modern e-commerce website for gold-plated jewelry built with Next.j
 ## 📦 Data Structure
 
 ### Product Interface
+
 ```typescript
 interface Product {
   id: string;
   name: string;
   price: number;
   image: string;
-  category: 'necklace' | 'earring' | 'bracelet' | 'ring';
+  category: "necklace" | "earring" | "bracelet" | "ring";
   description?: string;
   featured?: boolean;
   bestseller?: boolean;
@@ -143,6 +149,7 @@ interface Product {
 ```
 
 ### Mock Data Included
+
 - 11 Products across all categories
 - 4 Customer testimonials
 - 3 Category types
@@ -159,6 +166,7 @@ The app is structured to easily connect to any backend:
 4. **Hooks** - useCart can be extended for API calls
 
 ### Environment Variables
+
 ```
 MONGO_URL=mongodb://localhost:27017
 DB_NAME=your_database_name
@@ -168,7 +176,9 @@ NEXT_PUBLIC_BASE_URL=https://your-domain.com
 ## 🎭 Customization
 
 ### Adding New Products
+
 Edit `/lib/data/products.ts` and add:
+
 ```typescript
 {
   id: '12',
@@ -180,17 +190,8 @@ Edit `/lib/data/products.ts` and add:
 }
 ```
 
-### Changing Colors
-Edit `/lib/constants/colors.ts`:
-```typescript
-export const COLORS = {
-  blush: '#FFFDFD',
-  warmEspresso: '#3E3636',
-  dustyRose: '#D9B3B0',
-};
-```
-
 ### Adding Sections
+
 Create new component in `/components/sections/` and import in `/app/page.tsx`
 
 ## 📱 Responsive Breakpoints

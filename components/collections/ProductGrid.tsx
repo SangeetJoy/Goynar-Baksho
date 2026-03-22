@@ -1,7 +1,6 @@
-import React from 'react';
-import { Product } from '@/lib/types';
-import { CollectionProductCard } from './CollectionProductCard';
-import { COLORS } from '@/lib/constants/colors';
+import React from "react";
+import { Product } from "@/lib/types";
+import { CollectionProductCard } from "./CollectionProductCard";
 
 interface ProductGridProps {
   products: Product[];
@@ -12,14 +11,10 @@ export const ProductGrid: React.FC<ProductGridProps> = ({
   products,
   onAddToCart,
 }) => {
-  // Show empty state if no products
   if (products.length === 0) {
     return (
       <div className="text-center py-20">
-        <p
-          className="text-xl"
-          style={{ color: COLORS.textBody, opacity: 0.6 }}
-        >
+        <p className="text-xl text-white opacity-60">
           No products found in this category.
         </p>
       </div>

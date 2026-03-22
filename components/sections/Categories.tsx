@@ -1,7 +1,6 @@
-'use client';
+"use client";
 
-import React from 'react';
-import { COLORS } from '@/lib/constants/colors';
+import React from "react";
 
 // Categories are now integrated into Hero section
 // This component is kept for potential future use

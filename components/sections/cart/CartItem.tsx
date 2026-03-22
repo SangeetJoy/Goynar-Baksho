@@ -1,6 +1,5 @@
 import React from "react";
 import Image from "next/image";
-import { COLORS } from "@/lib/constants/colors";
 
 interface CartItemProps {
   item: {
@@ -31,19 +30,11 @@ const ProductDetails = ({
   category: string;
 }) => (
   <div className="flex-grow">
-    <span
-      className="text-xs uppercase tracking-wide"
-      style={{ color: COLORS.textHeading, opacity: 0.7 }}
-    >
+    <span className="text-xs uppercase tracking-wide text-brand-heading opacity-70">
       {category}
     </span>
-    <h3
-      className="text-lg font-semibold mt-1"
-      style={{ color: COLORS.textBody }}
-    >
-      {name}
-    </h3>
-    <p className="text-xl font-bold mt-2" style={{ color: COLORS.textHeading }}>
+    <h3 className="text-lg font-semibold mt-1 text-white">{name}</h3>
+    <p className="text-xl font-bold mt-2 text-brand-heading">
       ₹{price.toFixed(2)}
     </p>
   </div>
@@ -64,40 +55,25 @@ const QuantityControls = ({
     <div className="flex items-center gap-2">
       <button
         onClick={onDecrease}
-        className="w-8 h-8 rounded-full flex items-center justify-center transition-all duration-200 hover:scale-110"
-        style={{
-          backgroundColor: COLORS.productBackdrop,
-          color: COLORS.textBody,
-        }}
+        className="w-8 h-8 rounded-full flex items-center justify-center bg-brand-mauve text-white transition-all duration-200 hover:scale-110"
         aria-label="Decrease quantity"
       >
         <span className="text-lg font-bold">−</span>
       </button>
-
-      <span
-        className="w-12 text-center font-semibold"
-        style={{ color: COLORS.textBody }}
-      >
+      <span className="w-12 text-center font-semibold text-white">
         {quantity}
       </span>
-
       <button
         onClick={onIncrease}
-        className="w-8 h-8 rounded-full flex items-center justify-center transition-all duration-200 hover:scale-110"
-        style={{
-          backgroundColor: COLORS.accentPrimary,
-          color: COLORS.textBody,
-        }}
+        className="w-8 h-8 rounded-full flex items-center justify-center bg-brand-accent text-white transition-all duration-200 hover:scale-110"
         aria-label="Increase quantity"
       >
         <span className="text-lg font-bold">+</span>
       </button>
     </div>
-
     <button
       onClick={onRemove}
-      className="text-sm underline hover:opacity-70 transition-opacity"
-      style={{ color: COLORS.textBody, opacity: 0.6 }}
+      className="text-sm underline text-white opacity-60 hover:opacity-70 transition-opacity"
     >
       Remove
     </button>
@@ -106,13 +82,8 @@ const QuantityControls = ({
 
 const Subtotal = ({ price, quantity }: { price: number; quantity: number }) => (
   <div className="text-right hidden md:block">
-    <p
-      className="text-sm mb-1"
-      style={{ color: COLORS.textBody, opacity: 0.7 }}
-    >
-      Subtotal
-    </p>
-    <p className="text-2xl font-bold" style={{ color: COLORS.textHeading }}>
+    <p className="text-sm mb-1 text-white opacity-70">Subtotal</p>
+    <p className="text-2xl font-bold text-brand-heading">
       ₹{(price * quantity).toFixed(2)}
     </p>
   </div>
@@ -123,15 +94,12 @@ export const CartItem: React.FC<CartItemProps> = ({
   onUpdateQuantity,
   onRemove,
 }) => {
-  const handleQuantityChange = (newQuantity: number) => {
-    if (newQuantity >= 1) onUpdateQuantity(item.id, newQuantity);
+  const handleQuantityChange = (newQty: number) => {
+    if (newQty >= 1) onUpdateQuantity(item.id, newQty);
   };
 
   return (
-    <div
-      className="rounded-2xl p-4 shadow-lg transition-all duration-300 hover:shadow-xl"
-      style={{ backgroundColor: COLORS.bgSecondary }}
-    >
+    <div className="rounded-2xl p-4 shadow-lg transition-all duration-300 hover:shadow-xl bg-brand-card">
       <div className="flex gap-4 items-center">
         <ProductImage src={item.image} alt={item.name} />
         <ProductDetails

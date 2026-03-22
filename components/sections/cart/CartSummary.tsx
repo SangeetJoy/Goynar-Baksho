@@ -1,6 +1,5 @@
 import React from "react";
 import { Button } from "@/components/ui/Button";
-import { COLORS } from "@/lib/constants/colors";
 
 interface CartSummaryProps {
   total: number;
@@ -11,30 +10,24 @@ interface CartSummaryProps {
 const SummaryRow = ({
   label,
   value,
-  valueColor,
+  highlight = false,
 }: {
   label: string;
   value: string;
-  valueColor?: string;
+  highlight?: boolean;
 }) => (
   <div className="flex justify-between">
-    <span style={{ color: COLORS.textBody, opacity: 0.8 }}>{label}</span>
-    <span style={{ color: valueColor ?? COLORS.textBody }}>{value}</span>
+    <span className="text-white opacity-80">{label}</span>
+    <span className={highlight ? "text-brand-accent" : "text-white"}>
+      {value}
+    </span>
   </div>
 );
 
 const TotalRow = ({ finalTotal }: { finalTotal: number }) => (
-  <div
-    className="pt-4 border-t flex justify-between items-center"
-    style={{ borderColor: COLORS.productBackdrop }}
-  >
-    <span
-      className="text-xl font-semibold"
-      style={{ color: COLORS.textHeading }}
-    >
-      Total
-    </span>
-    <span className="text-2xl font-bold" style={{ color: COLORS.textHeading }}>
+  <div className="pt-4 border-t border-brand-mauve flex justify-between items-center">
+    <span className="text-xl font-semibold text-brand-heading">Total</span>
+    <span className="text-2xl font-bold text-brand-heading">
       ₹{finalTotal.toFixed(2)}
     </span>
   </div>
@@ -45,32 +38,12 @@ const ActionButtons = ({ onClearCart }: { onClearCart: () => void }) => (
     <Button variant="primary" size="md" className="w-full">
       Proceed to Checkout
     </Button>
-
     <button
       onClick={onClearCart}
-      className="w-full py-3 rounded-full text-sm font-medium transition-all duration-300 hover:opacity-80"
-      style={{
-        backgroundColor: "transparent",
-        color: COLORS.textBody,
-        border: `1px solid ${COLORS.productBackdrop}`,
-      }}
+      className="w-full py-3 rounded-full text-sm font-medium text-white border border-brand-mauve bg-transparent transition-all duration-300 hover:opacity-80"
     >
       Clear Cart
     </button>
-  </div>
-);
-
-const FooterNote = () => (
-  <div
-    className="mt-6 pt-6 border-t"
-    style={{ borderColor: COLORS.productBackdrop }}
-  >
-    <p
-      className="text-xs text-center"
-      style={{ color: COLORS.textBody, opacity: 0.6 }}
-    >
-      Free shipping on all orders • Secure checkout
-    </p>
   </div>
 );
 
@@ -79,19 +52,12 @@ export const CartSummary: React.FC<CartSummaryProps> = ({
   itemCount,
   onClearCart,
 }) => {
-  const tax = total * 0.18; // 18% GST
-  const shipping = 0; // Free shipping
-  const finalTotal = total + tax + shipping;
+  const tax = total * 0.18;
+  const finalTotal = total + tax;
 
   return (
-    <div
-      className="rounded-2xl p-6 sticky top-24"
-      style={{ backgroundColor: COLORS.bgSecondary }}
-    >
-      <h3
-        className="text-2xl font-serif mb-6"
-        style={{ color: COLORS.textHeading }}
-      >
+    <div className="rounded-2xl p-6 sticky top-24 bg-brand-card">
+      <h3 className="text-2xl font-serif mb-6 text-brand-heading">
         Order Summary
       </h3>
 
@@ -100,17 +66,18 @@ export const CartSummary: React.FC<CartSummaryProps> = ({
           label={`Subtotal (${itemCount} items)`}
           value={`₹${total.toFixed(2)}`}
         />
-        <SummaryRow
-          label="Shipping"
-          value="FREE"
-          valueColor={COLORS.accentPrimary}
-        />
+        <SummaryRow label="Shipping" value="FREE" highlight />
         <SummaryRow label="Tax (GST 18%)" value={`₹${tax.toFixed(2)}`} />
         <TotalRow finalTotal={finalTotal} />
       </div>
 
       <ActionButtons onClearCart={onClearCart} />
-      <FooterNote />
+
+      <div className="mt-6 pt-6 border-t border-brand-mauve">
+        <p className="text-xs text-center text-white opacity-60">
+          Free shipping on all orders • Secure checkout
+        </p>
+      </div>
     </div>
   );
 };

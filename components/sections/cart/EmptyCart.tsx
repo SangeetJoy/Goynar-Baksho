@@ -1,19 +1,15 @@
 import React from "react";
 import Link from "next/link";
 import { Button } from "@/components/ui/Button";
-import { COLORS } from "@/lib/constants/colors";
 
-const CartIcon = () => (
-  <div
-    className="w-32 h-32 mx-auto mb-8 rounded-full flex items-center justify-center"
-    style={{ backgroundColor: COLORS.bgSecondary }}
-  >
+const EmptyCartIcon = () => (
+  <div className="w-32 h-32 mx-auto mb-8 rounded-full flex items-center justify-center bg-brand-card text-brand-heading">
     <svg
       xmlns="http://www.w3.org/2000/svg"
       fill="none"
       viewBox="0 0 24 24"
       strokeWidth={1.5}
-      stroke={COLORS.textHeading}
+      stroke="currentColor"
       className="w-16 h-16"
     >
       <path
@@ -26,28 +22,16 @@ const CartIcon = () => (
 );
 
 export const EmptyCart: React.FC = () => (
-  <section
-    className="py-20 min-h-[60vh] flex items-center justify-center"
-    style={{ backgroundColor: COLORS.bgPrimary }}
-  >
+  <section className="py-20 min-h-[60vh] flex items-center justify-center bg-brand-bg">
     <div className="container mx-auto px-4 text-center">
-      <CartIcon />
-
-      <h2
-        className="text-3xl lg:text-4xl font-serif mb-4"
-        style={{ color: COLORS.textHeading }}
-      >
+      <EmptyCartIcon />
+      <h2 className="text-3xl lg:text-4xl font-serif mb-4 text-brand-heading">
         Your Cart is Empty
       </h2>
-
-      <p
-        className="text-lg mb-8 max-w-md mx-auto"
-        style={{ color: COLORS.textBody, opacity: 0.7 }}
-      >
+      <p className="text-lg mb-8 max-w-md mx-auto text-white opacity-70">
         Looks like you haven't added any items to your cart yet. Start shopping
         to fill it up!
       </p>
-
       <Link href="/collections">
         <Button variant="primary" size="lg">
           Continue Shopping

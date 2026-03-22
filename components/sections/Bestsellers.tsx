@@ -1,11 +1,8 @@
 "use client";
 
 import React from "react";
-import Image from "next/image";
 import { ProductCard } from "../ui/ProductCard";
-import { Button } from "../ui/Button";
 import { PRODUCTS } from "@/lib/data/products";
-import { COLORS } from "@/lib/constants/colors";
 import { useCartContext } from "@/providers/CartProvider";
 
 export const Bestsellers: React.FC = () => {
@@ -13,16 +10,12 @@ export const Bestsellers: React.FC = () => {
   const bestsellers = PRODUCTS.filter((p) => p.bestseller).slice(0, 3);
 
   return (
-    <section className="py-16" style={{ backgroundColor: COLORS.bgPrimary }}>
+    <section className="py-16 bg-brand-bg">
       <div className="container mx-auto px-4">
-        <h2
-          className="text-4xl lg:text-5xl font-serif mb-12 text-center lg:text-left"
-          style={{ color: COLORS.textHeading }}
-        >
+        <h2 className="text-4xl lg:text-5xl font-serif mb-12 text-center lg:text-left text-brand-heading">
           Bestsellers
         </h2>
         <div className="grid grid-cols-1 lg:grid-cols-4 gap-8">
-          {/* Product Cards */}
           {bestsellers.map((product) => (
             <ProductCard
               key={product.id}
