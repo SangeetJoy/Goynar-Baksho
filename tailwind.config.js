@@ -71,6 +71,13 @@ module.exports = {
           border: "hsl(var(--sidebar-border))",
           ring: "hsl(var(--sidebar-ring))",
         },
+        brand: {
+          bg: "var(--color-bg-primary)",
+          card: "var(--color-bg-secondary)",
+          accent: "var(--color-accent)",
+          glow: "var(--color-accent-glow)",
+          heading: "var(--color-text-heading)",
+        },
       },
       borderRadius: {
         lg: "var(--radius)",

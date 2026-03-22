@@ -29,6 +29,13 @@
     --chart-4: 43 74% 66%;
     --chart-5: 27 87% 67%;
     --radius: 0.5rem;
+
+    /* Goynar Baksho brand tokens */
+    --color-bg-primary:      #121212;
+    --color-bg-secondary:    #1C1C1C;
+    --color-accent:          #A66D70;
+    --color-accent-glow:     #3D2B2E;
+    --color-text-heading:    #E2C29C;
   }
 
   .dark {
