@@ -8,7 +8,7 @@ import {
   LocationIcon,
   ClockIcon,
   CheckIcon,
-} from "@/components/icons/contacticons";
+} from "../../components/icons/ContactIcons";
 
 // ─── Types ────────────────────────────────────────────────────────────────────
 type FormState = { name: string; email: string; message: string };

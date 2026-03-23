@@ -1,5 +1,13 @@
 import { Product } from "../types";
 
+export const getProductBySlug = (slug: string): Product | undefined =>
+  PRODUCTS.find((p) => p.slug === slug);
+
+export const getRelatedProducts = (product: Product, count = 4): Product[] =>
+  PRODUCTS.filter(
+    (p) => p.category === product.category && p.id !== product.id
+  ).slice(0, count);
+
 export const PRODUCTS: Product[] = [
   {
     id: "1",

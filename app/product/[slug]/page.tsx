@@ -8,15 +8,7 @@ import { useCartContext } from "@/providers/CartProvider";
 // import { getProductBySlug, getRelatedProducts } from "@/lib/data/products";
 import { ProductCard } from "@/components/ui/ProductCard";
 import { Product } from "@/lib/types";
-import { PRODUCTS } from "@/lib/data/products";
-
-export const getProductBySlug = (slug: string): Product | undefined =>
-  PRODUCTS.find((p) => p.slug === slug);
-
-export const getRelatedProducts = (product: Product, count = 4): Product[] =>
-  PRODUCTS.filter(
-    (p) => p.category === product.category && p.id !== product.id
-  ).slice(0, count);
+import { getProductBySlug, getRelatedProducts } from "@/lib/data/products";
 
 // ─── Breadcrumb ───────────────────────────────────────────────────────────────
 const Breadcrumb = ({ product }: { product: Product }) => (
