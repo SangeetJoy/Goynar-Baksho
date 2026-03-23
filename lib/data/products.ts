@@ -3,16 +3,20 @@ import { Product } from "../types";
 export const PRODUCTS: Product[] = [
   {
     id: "1",
+    slug: "gold-chain-bracelet",
     name: "Gold Chain Bracelet",
     price: 899.0,
     image: "/images/hero/jewellery-image-1.png",
-    category: "bracelet",
+    category: "necklace",
     featured: true,
     newArrival: true,
     bestseller: true,
+    description:
+      "A timeless gold chain bracelet crafted with precision and finished with premium gold plating. Lightweight yet striking, this piece transitions effortlessly from morning errands to evening celebrations. Each link is carefully inspected to ensure a smooth, comfortable fit on your wrist.",
   },
   {
     id: "2",
+    slug: "diamond-circle-ring",
     name: "Diamond Circle Ring",
     price: 999.0,
     image: "/images/hero/jewellery-image-2.png",
@@ -20,9 +24,12 @@ export const PRODUCTS: Product[] = [
     featured: true,
     newArrival: true,
     bestseller: true,
+    description:
+      "A bold, geometric circle ring with a refined finish. Inspired by modern minimalism, this piece makes a quiet yet confident statement. The smooth gold-plated band is designed to sit beautifully on any finger and pairs effortlessly with both casual and formal looks.",
   },
   {
     id: "3",
+    slug: "gold-drop-earrings",
     name: "Gold Drop Earrings",
     price: 799.0,
     image: "/images/hero/jewellery-image-3.png",
@@ -30,19 +37,25 @@ export const PRODUCTS: Product[] = [
     featured: true,
     newArrival: true,
     bestseller: true,
+    description:
+      "Graceful and feminine, these gold drop earrings are designed to catch the light with every movement. Handcrafted with attention to every detail, they hang at just the right length to frame your face beautifully. Perfect for weddings, festive occasions, or any day you want to feel a little more special.",
   },
   {
     id: "4",
+    slug: "rose-gold-bracelet",
     name: "Rose Gold Bracelet",
     price: 65.0,
     image: "/images/hero/jewellery-image-4.png",
-    category: "bracelet",
+    category: "necklace",
     featured: true,
     newArrival: true,
     bestseller: false,
+    description:
+      "Soft, warm, and undeniably elegant — this rose gold bracelet is a favourite for those who prefer a gentler shimmer. The delicate chain features a secure clasp and a finish that stays bright with everyday wear. Stack it with other bracelets or let it shine solo.",
   },
   {
     id: "5",
+    slug: "layered-gold-necklace",
     name: "Layered Gold Necklace",
     price: 120.0,
     image: "/images/hero/jewellery-image-5.png",
@@ -50,71 +63,98 @@ export const PRODUCTS: Product[] = [
     featured: false,
     newArrival: false,
     bestseller: true,
+    description:
+      "Two delicate gold chains worn as one — this layered necklace brings effortless depth to any outfit. Whether you're wearing a saree, a kurta, or a western dress, this piece adds that finishing touch that ties everything together. Locally sourced and lovingly crafted.",
   },
   {
     id: "6",
+    slug: "gold-statement-ring",
     name: "Gold Statement Ring",
     price: 89.0,
-    image:
-      "https://images.pexels.com/photos/1395306/pexels-photo-1395306.jpeg?w=500&h=500&fit=crop",
-    category: "ring",
+    image: "/images/products/bracelet_3.png",
+    category: "bracelet",
     featured: false,
     newArrival: false,
     bestseller: false,
+    description:
+      "Make your presence felt with this bold gold statement ring. Wide-band design with a polished surface that catches every glance. A conversation starter at parties and a confidence booster everywhere else.",
   },
   {
     id: "7",
+    slug: "delicate-gold-necklace",
     name: "Delicate Gold Necklace",
     price: 145.0,
-    image:
-      "https://images.unsplash.com/photo-1601121141461-9d6647bca1ed?w=500&h=500&fit=crop",
+    image: "/images/products/necklace_1.png",
     category: "necklace",
     featured: false,
     newArrival: false,
     bestseller: false,
+    description:
+      "For days when you want to feel adorned without the weight — this delicate gold necklace is barely-there beauty at its finest. A fine chain with a subtle pendant sits close to the collarbone for a refined, modern look.",
+  },
+  {
+    id: "7",
+    slug: "modern-gold-necklace",
+    name: "Modern Gold Necklace",
+    price: 145.0,
+    image: "/images/products/necklace_2.png",
+    category: "necklace",
+    featured: false,
+    newArrival: false,
+    bestseller: true,
+    description:
+      "For days when you want to feel adorned without the weight — this delicate gold necklace is barely-there beauty at its finest. A fine chain with a subtle pendant sits close to the collarbone for a refined, modern look.",
   },
   {
     id: "8",
+    slug: "geometric-gold-earrings",
     name: "Geometric Gold Earrings",
     price: 95.0,
-    image:
-      "https://images.unsplash.com/photo-1617038220319-276d3cfab638?w=500&h=500&fit=crop",
+    image: "/images/products/necklace_4.png",
     category: "earring",
     featured: false,
     newArrival: false,
     bestseller: false,
+    description:
+      "Sharp angles, clean lines, and a brilliant gold finish — these geometric earrings are designed for the woman who appreciates contemporary design. Lightweight enough for all-day wear, striking enough to be remembered.",
   },
   {
     id: "9",
+    slug: "double-band-ring",
     name: "Double Band Ring",
     price: 110.0,
-    image:
-      "https://images.pexels.com/photos/1395306/pexels-photo-1395306.jpeg?w=500&h=500&fit=crop",
-    category: "ring",
+    image: "/images/products/necklace_3.png",
+    category: "necklace",
     featured: false,
     newArrival: false,
     bestseller: false,
+    description:
+      "Two bands, one beautiful ring. This double band design brings an architectural elegance to your fingers. It sits flat, stacks well with other rings, and looks equally at home in boardrooms and banquet halls.",
   },
   {
     id: "10",
-    name: "Ornate Gold Ring",
+    slug: "ornate-gold-bracelet",
+    name: "Ornate Gold bracelet",
     price: 135.0,
-    image:
-      "https://images.unsplash.com/photo-1650455221359-3aebf920bcc5?w=500&h=500&fit=crop",
-    category: "ring",
+    image: "images/products/bracelet_2.png",
+    category: "bracelet",
     featured: false,
     newArrival: false,
     bestseller: false,
+    description:
+      "Rich in detail, this ornate gold ring draws from traditional craftsmanship and reimagines it for the modern wearer. Intricate surface patterning catches the light beautifully — a true heirloom in the making.",
   },
   {
     id: "11",
-    name: "Classic Gold Hoop Earrings",
+    slug: "classic-gold-hoop-bracelet",
+    name: "Classic Gold Hoop bracelet",
     price: 99.0,
-    image:
-      "https://images.unsplash.com/photo-1629224316810-9d8805b95e76?w=500&h=500&fit=crop",
-    category: "earring",
+    image: "/images/products/bracelet_1.png",
+    category: "bracelet",
     featured: false,
     newArrival: false,
     bestseller: false,
+    description:
+      "The hoop earring — timeless, versatile, and endlessly stylish. This classic gold version is the one you'll reach for again and again. A medium-sized hoop that works with every face shape and every outfit in your wardrobe.",
   },
 ];
