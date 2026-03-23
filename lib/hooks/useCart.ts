@@ -1,7 +1,7 @@
-import { useState, useCallback } from 'react';
-import { Product } from '../types';
+import { useState, useCallback } from "react";
+import { Product } from "../types";
 
-interface CartItem extends Product {
+export interface CartItem extends Product {
   quantity: number;
 }
 
@@ -11,7 +11,7 @@ export const useCart = () => {
   const addToCart = useCallback((product: Product) => {
     setCartItems((prevItems) => {
       const existingItem = prevItems.find((item) => item.id === product.id);
-      
+
       if (existingItem) {
         return prevItems.map((item) =>
           item.id === product.id
@@ -19,7 +19,7 @@ export const useCart = () => {
             : item
         );
       }
-      
+
       return [...prevItems, { ...product, quantity: 1 }];
     });
   }, []);

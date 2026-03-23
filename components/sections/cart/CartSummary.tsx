@@ -5,6 +5,7 @@ interface CartSummaryProps {
   total: number;
   itemCount: number;
   onClearCart: () => void;
+  onCheckout: () => void;
 }
 
 const SummaryRow = ({
@@ -33,9 +34,15 @@ const TotalRow = ({ finalTotal }: { finalTotal: number }) => (
   </div>
 );
 
-const ActionButtons = ({ onClearCart }: { onClearCart: () => void }) => (
+const ActionButtons = ({
+  onClearCart,
+  onCheckout,
+}: {
+  onClearCart: () => void;
+  onCheckout: () => void;
+}) => (
   <div className="space-y-3">
-    <Button variant="primary" size="md" className="w-full">
+    <Button variant="primary" size="md" className="w-full" onClick={onCheckout}>
       Proceed to Checkout
     </Button>
     <button
@@ -51,6 +58,7 @@ export const CartSummary: React.FC<CartSummaryProps> = ({
   total,
   itemCount,
   onClearCart,
+  onCheckout,
 }) => {
   const tax = total * 0.18;
   const finalTotal = total + tax;
@@ -71,7 +79,7 @@ export const CartSummary: React.FC<CartSummaryProps> = ({
         <TotalRow finalTotal={finalTotal} />
       </div>
 
-      <ActionButtons onClearCart={onClearCart} />
+      <ActionButtons onClearCart={onClearCart} onCheckout={onCheckout} />
 
       <div className="mt-6 pt-6 border-t border-brand-mauve">
         <p className="text-xs text-center text-white opacity-60">
