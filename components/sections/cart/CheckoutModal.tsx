@@ -5,7 +5,7 @@ import { buildWhatsAppCheckout, generateInvoicePDF } from "@/lib/utils";
 import { Product } from "@/lib/types";
 
 // ─── Types ────────────────────────────────────────────────────────────────────
-type Step = "details" | "receipt";
+type Step = "details" | "whatsapp" | "confirmed";
 
 interface CheckoutModalProps {
   isOpen: boolean;
@@ -13,7 +13,14 @@ interface CheckoutModalProps {
   cartItems: (Product & { quantity: number })[];
 }
 
-// ─── Helpers ──────────────────────────────────────────────────────────────────
+interface ReceiptData {
+  orderId: string;
+  ownerUrl: string;
+  customerName: string;
+  customerPhone: string;
+}
+
+// ─── Icons ────────────────────────────────────────────────────────────────────
 const CloseIcon = () => (
   <svg
     width="20"
@@ -87,7 +94,6 @@ const DetailsStep: React.FC<DetailsStepProps> = ({
       setErrors(errs);
       return;
     }
-    // Prepend country code if not present
     const formattedPhone = phone.startsWith("91") ? phone : `91${phone}`;
     onSubmit(name.trim(), formattedPhone);
   };
@@ -101,11 +107,10 @@ const DetailsStep: React.FC<DetailsStepProps> = ({
 
   return (
     <div className="flex flex-col">
-      {/* Header */}
       <div className="flex items-start justify-between mb-6">
         <div>
           <p className="text-xs uppercase tracking-widest text-brand-accent mb-1">
-            Checkout
+            Step 1 of 2
           </p>
           <h2 className="font-serif text-2xl text-brand-heading">
             Your Details
@@ -119,7 +124,7 @@ const DetailsStep: React.FC<DetailsStepProps> = ({
         </button>
       </div>
 
-      {/* Order summary pill */}
+      {/* Cart summary pill */}
       <div className="flex items-center justify-between bg-brand-accent/10 border border-brand-accent/20 rounded-xl px-4 py-3 mb-8">
         <span className="text-sm text-white/70">
           {itemCount} item{itemCount !== 1 ? "s" : ""} in cart
@@ -167,7 +172,7 @@ const DetailsStep: React.FC<DetailsStepProps> = ({
           type="submit"
           className="w-full py-4 rounded-full bg-brand-accent text-white text-sm font-medium mt-2 hover:opacity-90 transition-opacity"
         >
-          Continue to Receipt →
+          Continue →
         </button>
       </form>
 
@@ -181,57 +186,37 @@ const DetailsStep: React.FC<DetailsStepProps> = ({
   );
 };
 
-// ─── Step 2: Receipt ──────────────────────────────────────────────────────────
-interface ReceiptStepProps {
-  orderId: string;
-  ownerUrl: string;
+// ─── Step 2: WhatsApp Action ──────────────────────────────────────────────────
+interface WhatsAppStepProps {
+  receipt: ReceiptData;
   cartItems: (Product & { quantity: number })[];
   cartTotal: number;
-  customerName: string;
-  customerPhone: string;
+  onSent: () => void;
   onClose: () => void;
 }
 
-const ReceiptStep: React.FC<ReceiptStepProps> = ({
-  orderId,
-  ownerUrl,
+const WhatsAppStep: React.FC<WhatsAppStepProps> = ({
+  receipt,
   cartItems,
   cartTotal,
-  customerName,
-  customerPhone,
+  onSent,
   onClose,
 }) => {
-  const [downloading, setDownloading] = useState(false);
-
-  const handleDownload = async () => {
-    setDownloading(true);
-    generateInvoicePDF({
-      orderId,
-      customerName,
-      customerPhone,
-      cartItems,
-      cartTotal,
-      date: new Date().toLocaleDateString("en-IN", {
-        day: "numeric",
-        month: "long",
-        year: "numeric",
-      }),
-    });
-    setTimeout(() => setDownloading(false), 1500);
+  const handleWhatsApp = () => {
+    window.open(receipt.ownerUrl, "_blank");
+    // Small delay so WhatsApp has time to open before we transition
+    setTimeout(onSent, 800);
   };
-
-  const handleWhatsApp = () => window.open(ownerUrl, "_blank");
 
   return (
     <div className="flex flex-col">
-      {/* Header */}
-      <div className="flex items-start justify-between mb-2">
+      <div className="flex items-start justify-between mb-6">
         <div>
           <p className="text-xs uppercase tracking-widest text-brand-accent mb-1">
-            Order Placed
+            Step 2 of 2
           </p>
           <h2 className="font-serif text-2xl text-brand-heading">
-            Your Receipt
+            Place Your Order
           </h2>
         </div>
         <button
@@ -242,39 +227,8 @@ const ReceiptStep: React.FC<ReceiptStepProps> = ({
         </button>
       </div>
 
-      {/* Success banner */}
-      <div className="flex items-center gap-3 bg-green-500/10 border border-green-500/25 rounded-xl px-4 py-3 mb-6 mt-4">
-        <div className="w-7 h-7 rounded-full bg-green-500/20 flex items-center justify-center flex-shrink-0">
-          <svg
-            width="14"
-            height="14"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="#4ade80"
-            strokeWidth="2.5"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-          >
-            <polyline points="20 6 9 17 4 12" />
-          </svg>
-        </div>
-        <div>
-          <p className="text-sm font-medium text-white">
-            Order confirmed, {customerName}!
-          </p>
-          <p
-            className="text-xs mt-0.5"
-            style={{ color: "rgba(255,255,255,0.5)" }}
-          >
-            Order ID:{" "}
-            <span className="font-mono text-brand-accent">{orderId}</span>
-          </p>
-        </div>
-      </div>
-
-      {/* Receipt card */}
-      <div className="bg-brand-card border border-white/10 rounded-2xl p-4 mb-6 max-h-48 overflow-y-auto">
-        {/* Items */}
+      {/* Order summary card */}
+      <div className="bg-brand-card border border-white/10 rounded-2xl p-4 mb-6 max-h-44 overflow-y-auto">
         <div className="flex flex-col divide-y divide-white/5">
           {cartItems.map((item) => (
             <div
@@ -305,8 +259,6 @@ const ReceiptStep: React.FC<ReceiptStepProps> = ({
             </div>
           ))}
         </div>
-
-        {/* Total */}
         <div className="flex justify-between items-center pt-3 mt-1 border-t border-white/10">
           <span className="text-sm font-semibold text-white">Total</span>
           <span className="text-base font-bold text-brand-heading">
@@ -315,35 +267,161 @@ const ReceiptStep: React.FC<ReceiptStepProps> = ({
         </div>
       </div>
 
-      {/* Note */}
-      <p
-        className="text-xs mb-6 leading-relaxed"
-        style={{ color: "rgba(255,255,255,0.5)" }}
+      {/* Instruction */}
+      <div className="bg-brand-accent/10 border border-brand-accent/20 rounded-xl px-4 py-3 mb-6">
+        <p className="text-sm text-white/80 leading-relaxed">
+          📱 Tap the button below to send your order to the shop on WhatsApp.
+          The shop will confirm and share payment details with you.
+        </p>
+      </div>
+
+      <button
+        onClick={handleWhatsApp}
+        className="w-full py-4 rounded-full bg-[#25D366] text-white text-sm font-semibold flex items-center justify-center gap-2.5 hover:opacity-90 transition-opacity"
       >
-        📱 Tap <strong className="text-white">Message Shop on WhatsApp</strong>{" "}
-        — the shop will contact you to confirm your order and share payment
-        details.
+        <WhatsAppIcon />
+        Send Order on WhatsApp
+      </button>
+
+      <p
+        className="text-xs text-center mt-4"
+        style={{ color: "rgba(255,255,255,0.35)" }}
+      >
+        Order ID:{" "}
+        <span className="font-mono text-brand-accent">{receipt.orderId}</span>
       </p>
+    </div>
+  );
+};
 
-      {/* Actions */}
-      <div className="flex flex-col gap-3">
-        <button
-          onClick={handleWhatsApp}
-          className="w-full py-4 rounded-full bg-[#25D366] text-white text-sm font-medium flex items-center justify-center gap-2.5 hover:opacity-90 transition-opacity"
-        >
-          <WhatsAppIcon />
-          Message Shop on WhatsApp
-        </button>
+// ─── Step 3: Confirmed ────────────────────────────────────────────────────────
+interface ConfirmedStepProps {
+  receipt: ReceiptData;
+  cartItems: (Product & { quantity: number })[];
+  cartTotal: number;
+  onClose: () => void;
+}
 
+const ConfirmedStep: React.FC<ConfirmedStepProps> = ({
+  receipt,
+  cartItems,
+  cartTotal,
+  onClose,
+}) => {
+  const [downloading, setDownloading] = useState(false);
+
+  const handleDownload = () => {
+    setDownloading(true);
+    generateInvoicePDF({
+      orderId: receipt.orderId,
+      customerName: receipt.customerName,
+      customerPhone: receipt.customerPhone,
+      cartItems,
+      cartTotal,
+      date: new Date().toLocaleDateString("en-IN", {
+        day: "numeric",
+        month: "long",
+        year: "numeric",
+      }),
+    });
+    setTimeout(() => setDownloading(false), 1500);
+  };
+
+  return (
+    <div className="flex flex-col">
+      <div className="flex items-start justify-between mb-2">
+        <div>
+          <p className="text-xs uppercase tracking-widest text-brand-accent mb-1">
+            Order Sent
+          </p>
+          <h2 className="font-serif text-2xl text-brand-heading">
+            You're All Set!
+          </h2>
+        </div>
         <button
-          onClick={handleDownload}
-          disabled={downloading}
-          className="w-full py-3.5 rounded-full border border-white/20 text-white text-sm font-medium flex items-center justify-center gap-2 hover:border-brand-accent/40 transition-colors disabled:opacity-60"
+          onClick={onClose}
+          className="text-white/40 hover:text-white transition-colors mt-1"
         >
-          <DownloadIcon />
-          {downloading ? "Generating PDF..." : "Download Invoice"}
+          <CloseIcon />
         </button>
       </div>
+
+      {/* Success banner */}
+      <div className="flex items-center gap-3 bg-green-500/10 border border-green-500/25 rounded-xl px-4 py-3 mb-6 mt-4">
+        <div className="w-8 h-8 rounded-full bg-green-500/20 flex items-center justify-center flex-shrink-0">
+          <svg
+            width="16"
+            height="16"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="#4ade80"
+            strokeWidth="2.5"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          >
+            <polyline points="20 6 9 17 4 12" />
+          </svg>
+        </div>
+        <div>
+          <p className="text-sm font-medium text-white">
+            Order sent, {receipt.customerName}!
+          </p>
+          <p
+            className="text-xs mt-0.5"
+            style={{ color: "rgba(255,255,255,0.5)" }}
+          >
+            The shop will contact you shortly to confirm.
+          </p>
+        </div>
+      </div>
+
+      {/* Order ID box */}
+      <div className="flex items-center justify-between bg-brand-card border border-white/10 rounded-xl px-4 py-3 mb-6">
+        <span
+          className="text-xs uppercase tracking-widest"
+          style={{ color: "rgba(255,255,255,0.4)" }}
+        >
+          Order ID
+        </span>
+        <span className="font-mono text-sm text-brand-accent font-medium">
+          {receipt.orderId}
+        </span>
+      </div>
+
+      {/* What's next */}
+      <div className="flex flex-col gap-2 mb-6">
+        {[
+          "The shop will message you on WhatsApp to confirm",
+          "You'll receive payment instructions from the shop",
+          "Your order will be dispatched after payment",
+        ].map((step, i) => (
+          <div key={i} className="flex items-start gap-3">
+            <span className="w-5 h-5 rounded-full bg-brand-accent/20 text-brand-accent text-xs flex items-center justify-center flex-shrink-0 mt-0.5 font-medium">
+              {i + 1}
+            </span>
+            <p className="text-sm" style={{ color: "rgba(255,255,255,0.6)" }}>
+              {step}
+            </p>
+          </div>
+        ))}
+      </div>
+
+      {/* Download invoice */}
+      <button
+        onClick={handleDownload}
+        disabled={downloading}
+        className="w-full py-4 rounded-full bg-brand-accent text-white text-sm font-medium flex items-center justify-center gap-2 hover:opacity-90 transition-opacity disabled:opacity-60"
+      >
+        <DownloadIcon />
+        {downloading ? "Generating PDF..." : "Download Invoice"}
+      </button>
+
+      <button
+        onClick={onClose}
+        className="w-full py-3 mt-3 text-sm rounded-full border border-white/10 text-white/50 hover:text-white hover:border-white/20 transition-colors"
+      >
+        Close
+      </button>
     </div>
   );
 };
@@ -355,14 +433,9 @@ export const CheckoutModal: React.FC<CheckoutModalProps> = ({
   cartItems,
 }) => {
   const [step, setStep] = useState<Step>("details");
-  const [receipt, setReceipt] = useState<{
-    orderId: string;
-    ownerUrl: string;
-    customerName: string;
-    customerPhone: string;
-  } | null>(null);
+  const [receipt, setReceipt] = useState<ReceiptData | null>(null);
 
-  // Reset to step 1 whenever modal opens
+  // Reset on open
   useEffect(() => {
     if (isOpen) {
       setStep("details");
@@ -389,43 +462,50 @@ export const CheckoutModal: React.FC<CheckoutModalProps> = ({
   const handleDetailsSubmit = (name: string, phone: string) => {
     const { ownerUrl, orderId } = buildWhatsAppCheckout(cartItems, name, phone);
     setReceipt({ orderId, ownerUrl, customerName: name, customerPhone: phone });
-    setStep("receipt");
+    setStep("whatsapp");
   };
 
   return (
-    /* Backdrop */
     <div
       className="fixed inset-0 z-50 flex items-end sm:items-center justify-center p-0 sm:p-4"
       onClick={onClose}
     >
       <div className="absolute inset-0 bg-black/70 backdrop-blur-sm" />
 
-      {/* Panel — bottom sheet on mobile, centered modal on desktop */}
       <div
         className="relative w-full sm:max-w-md bg-brand-bg border border-white/10 rounded-t-3xl sm:rounded-3xl p-6 md:p-8 shadow-2xl z-10"
         onClick={(e) => e.stopPropagation()}
       >
-        {/* Drag handle (mobile only) */}
+        {/* Mobile drag handle */}
         <div className="w-10 h-1 bg-white/20 rounded-full mx-auto mb-6 sm:hidden" />
 
-        {step === "details" ? (
+        {step === "details" && (
           <DetailsStep
             onSubmit={handleDetailsSubmit}
             onClose={onClose}
             cartTotal={cartTotal}
             itemCount={itemCount}
           />
-        ) : receipt ? (
-          <ReceiptStep
-            orderId={receipt.orderId}
-            ownerUrl={receipt.ownerUrl}
+        )}
+
+        {step === "whatsapp" && receipt && (
+          <WhatsAppStep
+            receipt={receipt}
             cartItems={cartItems}
             cartTotal={cartTotal}
-            customerName={receipt.customerName}
-            customerPhone={receipt.customerPhone}
+            onSent={() => setStep("confirmed")}
             onClose={onClose}
           />
-        ) : null}
+        )}
+
+        {step === "confirmed" && receipt && (
+          <ConfirmedStep
+            receipt={receipt}
+            cartItems={cartItems}
+            cartTotal={cartTotal}
+            onClose={onClose}
+          />
+        )}
       </div>
     </div>
   );
