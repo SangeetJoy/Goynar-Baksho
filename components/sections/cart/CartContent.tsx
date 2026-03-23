@@ -5,12 +5,23 @@ import { useCartContext } from "@/providers/CartProvider";
 import { CartItem } from "./CartItem";
 import { CartSummary } from "./CartSummary";
 import { EmptyCart } from "./EmptyCart";
+import { buildWhatsAppCheckout } from "@/lib/utils";
 
 export const CartContent: React.FC = () => {
   const { cartItems, removeFromCart, updateQuantity, clearCart, getCartTotal } =
     useCartContext();
 
   if (cartItems.length === 0) return <EmptyCart />;
+
+  const onCheckout = () => {
+    const { ownerUrl, userReceiptText, orderId } = buildWhatsAppCheckout(
+      cartItems,
+      "Koyel",
+      "917001920948"
+    );
+
+    window.open(ownerUrl, "_blank");
+  };
 
   return (
     <section className="py-12 pb-20 bg-brand-bg">
@@ -37,6 +48,7 @@ export const CartContent: React.FC = () => {
               total={getCartTotal()}
               itemCount={cartItems.length}
               onClearCart={clearCart}
+              onCheckout={onCheckout}
             />
           </div>
         </div>
