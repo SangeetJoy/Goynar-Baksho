@@ -1,26 +1,29 @@
 "use client";
 
-import React from "react";
+import React, { useState } from "react";
 import { useCartContext } from "@/providers/CartProvider";
 import { CartItem } from "./CartItem";
 import { CartSummary } from "./CartSummary";
 import { EmptyCart } from "./EmptyCart";
 import { buildWhatsAppCheckout } from "@/lib/utils";
+import { CheckoutModal } from "./CheckoutModal";
 
 export const CartContent: React.FC = () => {
   const { cartItems, removeFromCart, updateQuantity, clearCart, getCartTotal } =
     useCartContext();
+  const [modalOpen, setModalOpen] = useState(false);
 
   if (cartItems.length === 0) return <EmptyCart />;
 
   const onCheckout = () => {
-    const { ownerUrl, userReceiptText, orderId } = buildWhatsAppCheckout(
-      cartItems,
-      "Koyel",
-      "917001920948"
-    );
+    // const { ownerUrl, userReceiptText, orderId } = buildWhatsAppCheckout(
+    //   cartItems,
+    //   "Koyel",
+    //   "917001920948"
+    // );
 
-    window.open(ownerUrl, "_blank");
+    // window.open(ownerUrl, "_blank");
+    setModalOpen(true);
   };
 
   return (
@@ -51,6 +54,12 @@ export const CartContent: React.FC = () => {
               onCheckout={onCheckout}
             />
           </div>
+          {/* Modal — sits outside the button, renders in a portal-like fixed overlay */}
+          <CheckoutModal
+            isOpen={modalOpen}
+            onClose={() => setModalOpen(false)}
+            cartItems={cartItems}
+          />
         </div>
       </div>
     </section>
