@@ -1,6 +1,7 @@
 import React from "react";
 import { Product } from "@/lib/types";
 import { ProductCard } from "./ProductCard";
+import Link from "next/link";
 
 interface SectionProductGridProps {
   title: string;
@@ -26,14 +27,16 @@ export const SectionProductGrid: React.FC<SectionProductGridProps> = ({
       </h2>
       <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 md:gap-8">
         {products.map((product) => (
-          <ProductCard
-            key={product.id}
-            product={product}
-            onAddToCart={onAddToCart}
-            showPrice={showPrice}
-            showBadges={showBadges}
-            showCategory={showCategory}
-          />
+          <Link href={`/product/${product.slug}`}>
+            <ProductCard
+              key={product.id}
+              product={product}
+              onAddToCart={onAddToCart}
+              showPrice={showPrice}
+              showBadges={showBadges}
+              showCategory={showCategory}
+            />
+          </Link>
         ))}
       </div>
     </div>
