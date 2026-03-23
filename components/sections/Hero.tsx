@@ -21,10 +21,6 @@ const styles = {
   image: "object-cover",
   heroLeft: "relative flex justify-center lg:justify-end overflow-visible",
 
-  // Categories float below image on desktop only
-  categories:
-    "hidden lg:flex absolute -bottom-10 left-[100%] -translate-x-8 gap-4 z-20",
-
   // Desktop only — hidden on mobile
   heroRight: "hidden lg:flex flex-col items-start gap-8 pl-16",
 
@@ -44,22 +40,9 @@ const HeroImage = () => (
   </div>
 );
 
-const FloatingCategories = () => (
-  <div className={styles.categories}>
-    {CATEGORIES.map((category) => (
-      <CategoryCard
-        key={category.id}
-        category={category}
-        onClick={() => console.log(`Navigate to ${category.slug}`)}
-      />
-    ))}
-  </div>
-);
-
 const HeroLeft = () => (
   <div className={styles.heroLeft}>
     <HeroImage />
-    <FloatingCategories />
   </div>
 );
 
