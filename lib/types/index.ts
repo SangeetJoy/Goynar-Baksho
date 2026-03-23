@@ -9,6 +9,7 @@ export interface Product {
   bestseller?: boolean;
   newArrival?: boolean;
   isAddedToCart?: boolean;
+  slug: string;
 }
 
 export interface Category {

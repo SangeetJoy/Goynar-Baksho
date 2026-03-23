@@ -406,7 +406,7 @@ function MyOrdersSection({ orders }: { orders: Order[] }) {
 
 // ─── Main Page ────────────────────────────────────────────────────────────────
 export default function ProfilePage() {
-  const [fullName, setFullName] = useState("Priya Sharma");
+  const [fullName, setFullName] = useState("Sangeet joy");
   const [phone, setPhone] = useState("98765 43210");
   const [altPhone, setAltPhone] = useState("");
   const [saved, setSaved] = useState(false);
