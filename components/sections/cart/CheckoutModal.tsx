@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
-import { buildWhatsAppCheckout } from "../../../lib/utils";
+import { buildWhatsAppCheckout, generateInvoicePDF } from "@/lib/utils";
 import { Product } from "@/lib/types";
 
 // ─── Types ────────────────────────────────────────────────────────────────────
@@ -29,7 +29,7 @@ const CloseIcon = () => (
   </svg>
 );
 
-const CopyIcon = () => (
+const DownloadIcon = () => (
   <svg
     width="16"
     height="16"
@@ -40,8 +40,9 @@ const CopyIcon = () => (
     strokeLinecap="round"
     strokeLinejoin="round"
   >
-    <rect x="9" y="9" width="13" height="13" rx="2" />
-    <path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1" />
+    <path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4" />
+    <polyline points="7 10 12 15 17 10" />
+    <line x1="12" y1="15" x2="12" y2="3" />
   </svg>
 );
 
@@ -184,28 +185,39 @@ const DetailsStep: React.FC<DetailsStepProps> = ({
 interface ReceiptStepProps {
   orderId: string;
   ownerUrl: string;
-  userReceiptText: string;
   cartItems: (Product & { quantity: number })[];
   cartTotal: number;
   customerName: string;
+  customerPhone: string;
   onClose: () => void;
 }
 
 const ReceiptStep: React.FC<ReceiptStepProps> = ({
   orderId,
   ownerUrl,
-  userReceiptText,
   cartItems,
   cartTotal,
   customerName,
+  customerPhone,
   onClose,
 }) => {
-  const [copied, setCopied] = useState(false);
+  const [downloading, setDownloading] = useState(false);
 
-  const handleCopy = async () => {
-    await navigator.clipboard.writeText(userReceiptText);
-    setCopied(true);
-    setTimeout(() => setCopied(false), 2500);
+  const handleDownload = async () => {
+    setDownloading(true);
+    generateInvoicePDF({
+      orderId,
+      customerName,
+      customerPhone,
+      cartItems,
+      cartTotal,
+      date: new Date().toLocaleDateString("en-IN", {
+        day: "numeric",
+        month: "long",
+        year: "numeric",
+      }),
+    });
+    setTimeout(() => setDownloading(false), 1500);
   };
 
   const handleWhatsApp = () => window.open(ownerUrl, "_blank");
@@ -324,11 +336,12 @@ const ReceiptStep: React.FC<ReceiptStepProps> = ({
         </button>
 
         <button
-          onClick={handleCopy}
-          className="w-full py-3.5 rounded-full border border-white/20 text-white text-sm font-medium flex items-center justify-center gap-2 hover:border-brand-accent/40 transition-colors"
+          onClick={handleDownload}
+          disabled={downloading}
+          className="w-full py-3.5 rounded-full border border-white/20 text-white text-sm font-medium flex items-center justify-center gap-2 hover:border-brand-accent/40 transition-colors disabled:opacity-60"
         >
-          <CopyIcon />
-          {copied ? "✓ Copied!" : "Copy Receipt"}
+          <DownloadIcon />
+          {downloading ? "Generating PDF..." : "Download Invoice"}
         </button>
       </div>
     </div>
@@ -345,8 +358,8 @@ export const CheckoutModal: React.FC<CheckoutModalProps> = ({
   const [receipt, setReceipt] = useState<{
     orderId: string;
     ownerUrl: string;
-    userReceiptText: string;
     customerName: string;
+    customerPhone: string;
   } | null>(null);
 
   // Reset to step 1 whenever modal opens
@@ -374,12 +387,8 @@ export const CheckoutModal: React.FC<CheckoutModalProps> = ({
   const itemCount = cartItems.reduce((sum, item) => sum + item.quantity, 0);
 
   const handleDetailsSubmit = (name: string, phone: string) => {
-    const { ownerUrl, userReceiptText, orderId } = buildWhatsAppCheckout(
-      cartItems,
-      name,
-      phone
-    );
-    setReceipt({ orderId, ownerUrl, userReceiptText, customerName: name });
+    const { ownerUrl, orderId } = buildWhatsAppCheckout(cartItems, name, phone);
+    setReceipt({ orderId, ownerUrl, customerName: name, customerPhone: phone });
     setStep("receipt");
   };
 
@@ -410,10 +419,10 @@ export const CheckoutModal: React.FC<CheckoutModalProps> = ({
           <ReceiptStep
             orderId={receipt.orderId}
             ownerUrl={receipt.ownerUrl}
-            userReceiptText={receipt.userReceiptText}
             cartItems={cartItems}
             cartTotal={cartTotal}
             customerName={receipt.customerName}
+            customerPhone={receipt.customerPhone}
             onClose={onClose}
           />
         ) : null}
