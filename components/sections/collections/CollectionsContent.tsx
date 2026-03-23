@@ -1,66 +1,63 @@
 "use client";
 
-import React, { useState, useMemo } from "react";
-import { PRODUCTS } from "@/lib/data/products";
-import { CategoryFilter } from "@/components/collections/CategoryFilter";
+import React from "react";
+import { FilterSidebar } from "@/components/collections/FilterSidebar";
 import { ProductGrid } from "@/components/collections/ProductGrid";
 import { useCartContext } from "@/providers/CartProvider";
+import { useProductFilters } from "@/lib/hooks/useProductFilters";
 import { Product } from "@/lib/types";
 
-type CategoryFilter = "all" | "necklace" | "bracelet" | "ring" | "earring";
-
 export const CollectionsContent: React.FC = () => {
-  const [selectedCategory, setSelectedCategory] =
-    useState<CategoryFilter>("all");
   const { addToCart, cartItems } = useCartContext();
+
+  const {
+    selectedCategory,
+    selectedPriceRange,
+    filteredProducts,
+    handleCategoryChange,
+    handlePriceRangeChange,
+  } = useProductFilters();
 
   console.log({ cartItems });
 
-  // Filter products based on selected category
-  const filteredProducts = useMemo(() => {
-    if (selectedCategory === "all") {
-      return PRODUCTS;
-    }
-    return PRODUCTS.filter((product) => product.category === selectedCategory);
-  }, [selectedCategory]);
-
-  // Handle category change
-  const handleCategoryChange = (category: CategoryFilter) => {
-    setSelectedCategory(category);
-  };
-
-  // Handle add to cart
   const handleAddToCart = (product: Product) => {
     if (!product.isAddedToCart) {
-      product.isAddedToCart = true; // Add the `isAdded` property to the product object
+      product.isAddedToCart = true;
       addToCart(product);
     }
-    // You can add a toast notification here later
     console.log(`Added ${product.name} to cart`);
   };
 
   return (
     <section className="py-12 min-h-screen">
       <div className="container mx-auto px-4">
-        {/* Category Filter */}
-        <CategoryFilter
-          selectedCategory={selectedCategory}
-          onCategoryChange={handleCategoryChange}
-        />
+        <div className="flex flex-col md:flex-row gap-10 items-start">
+          {/* Sidebar — handles its own mobile/desktop rendering */}
+          <FilterSidebar
+            selectedCategory={selectedCategory}
+            selectedPriceRange={selectedPriceRange}
+            onCategoryChange={handleCategoryChange}
+            onPriceRangeChange={handlePriceRangeChange}
+            productCount={filteredProducts.length}
+          />
 
-        {/* Product Count */}
-        <div className="mb-8">
-          <p className="text-sm" style={{ color: "rgba(255, 255, 255, 0.7)" }}>
-            Showing {filteredProducts.length} product
-            {filteredProducts.length !== 1 ? "s" : ""}
-          </p>
+          {/* Product Grid */}
+          <div className="flex-1 min-w-0">
+            {/* Desktop product count */}
+            <p
+              className="hidden md:block text-sm mb-8"
+              style={{ color: "rgba(255, 255, 255, 0.7)" }}
+            >
+              Showing {filteredProducts.length} product
+              {filteredProducts.length !== 1 ? "s" : ""}
+            </p>
+
+            <ProductGrid
+              products={filteredProducts}
+              onAddToCart={handleAddToCart}
+            />
+          </div>
         </div>
-
-        {/* Product Grid */}
-        <ProductGrid
-          products={filteredProducts}
-          onAddToCart={handleAddToCart}
-        />
       </div>
     </section>
   );
