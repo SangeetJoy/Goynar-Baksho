@@ -139,7 +139,7 @@ export const FilterSidebar: React.FC<FilterSidebarProps> = (props) => {
   return (
     <>
       {/* ── Mobile: filter bar trigger ── */}
-      <div className="md:hidden mb-6 flex items-center justify-between">
+      <div className="md:hidden mb-6 flex items-center gap-4 justify-between">
         <button
           onClick={() => setDrawerOpen(true)}
           className="flex items-center gap-2 px-5 py-2.5 rounded-full border border-brand-accent text-white text-sm font-medium transition-all duration-200 hover:bg-brand-accent"

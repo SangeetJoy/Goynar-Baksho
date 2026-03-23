@@ -26,11 +26,11 @@ const ProductBadges: React.FC<{
   if (!active.length) return null;
 
   return (
-    <div className="absolute top-4 right-4 flex flex-col gap-2">
+    <div className="absolute top-2 right-2 md:top-4 md:right-4 flex flex-col gap-1 md:gap-2">
       {active.map(({ label, className }) => (
         <span
           key={label}
-          className={`px-3 py-1 rounded-full text-xs font-bold ${className}`}
+          className={`px-2 py-0.5 md:px-3 md:py-1 rounded-full text-[10px] md:text-xs font-bold ${className}`}
         >
           {label}
         </span>
@@ -62,24 +62,24 @@ const ProductInfo: React.FC<{
   product: Product;
   onAddToCart: (product: Product) => void;
 }> = ({ product, onAddToCart }) => (
-  <div className="p-6 flex flex-col flex-grow">
-    <span className="text-xs uppercase tracking-wide mb-2 text-brand-heading opacity-80">
+  <div className="p-3 md:p-6 flex flex-col flex-grow">
+    <span className="text-[10px] md:text-xs uppercase tracking-wide mb-1 md:mb-2 text-brand-heading opacity-80">
       {product.category}
     </span>
-    <h3 className="text-lg font-semibold mb-3 flex-grow text-white">
+    <h3 className="text-sm md:text-lg font-semibold mb-2 md:mb-3 flex-grow text-white leading-snug">
       {product.name}
     </h3>
-    <div className="space-y-3">
-      <p className="text-2xl font-bold text-brand-heading">
+    <div className="space-y-2 md:space-y-3">
+      <p className="text-lg md:text-2xl font-bold text-brand-heading">
         ₹{product.price.toFixed(2)}
       </p>
       <Button
         variant="primary"
         size="sm"
         onClick={() => onAddToCart(product)}
-        className="w-full"
+        className="w-full text-xs md:text-sm"
       >
-        {product.isAddedToCart ? "Added to Cart" : "Add to Cart"}
+        {product.isAddedToCart ? "Added" : "Add to Cart"}
       </Button>
     </div>
   </div>
@@ -90,7 +90,7 @@ export const CollectionProductCard: React.FC<CollectionProductCardProps> = ({
   product,
   onAddToCart,
 }) => (
-  <div className="group relative rounded-3xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 flex flex-col bg-[#5C3D41]">
+  <div className="group relative rounded-2xl md:rounded-3xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 flex flex-col bg-[#5C3D41]">
     <ProductImage
       src={product.image}
       alt={product.name}
