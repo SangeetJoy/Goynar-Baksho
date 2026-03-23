@@ -6,15 +6,28 @@ import { CATEGORIES } from "@/lib/data/categories";
 import { cn } from "@/lib/utils";
 
 const styles = {
-  section: "relative py-20 bg-brand-bg",
-  container: "container mx-auto px-8",
-  grid: "grid lg:grid-cols-2 items-center gap-6",
+  section: "relative py-12 md:py-20 bg-brand-bg",
+  container: "container mx-auto px-4 md:px-8",
+
+  // Mobile: single column centered. Desktop: two columns.
+  grid: "flex flex-col items-center gap-10 lg:grid lg:grid-cols-2 lg:items-center lg:gap-6",
+
+  // Mobile: bigger circle. Desktop: original rounded rectangle.
   imageWrapper:
-    "relative h-[26rem] w-[40rem] overflow-hidden rounded-[2.5rem] shadow-2xl bg-brand-accent",
+    "relative w-[22rem] h-[22rem] rounded-full overflow-hidden shadow-2xl bg-brand-accent " +
+    "md:w-[28rem] md:h-[28rem] " +
+    "lg:h-[26rem] lg:w-[40rem] lg:rounded-[2.5rem]",
+
   image: "object-cover",
-  heroLeft: "relative flex justify-end overflow-visible",
-  categories: "absolute -bottom-10 left-[100%] -translate-x-8 flex gap-4 z-20",
-  heroRight: "flex flex-col items-start gap-8 pl-16",
+  heroLeft: "relative flex justify-center lg:justify-end overflow-visible",
+
+  // Categories float below image on desktop only
+  categories:
+    "hidden lg:flex absolute -bottom-10 left-[100%] -translate-x-8 gap-4 z-20",
+
+  // Desktop only — hidden on mobile
+  heroRight: "hidden lg:flex flex-col items-start gap-8 pl-16",
+
   heading:
     "font-serif text-[3.2rem] leading-tight uppercase tracking-wide text-brand-heading",
 };
